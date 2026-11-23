@@ -1,6 +1,6 @@
 # Moonlight Art Shop
 
-Web promosi satu halaman untuk Moonlight Art Shop (keramik, gerabah & dekorasi interior): cara pesan lewat WhatsApp, lokasi Art Shop dengan peta, dan galeri contoh produk. Bahasa Indonesia + English, dioptimalkan untuk HP.
+Web promosi satu halaman untuk Moonlight Art Shop (terakota, gerabah & dekorasi interior): cara pesan lewat WhatsApp, lokasi Art Shop dengan peta, dan galeri contoh produk. Bahasa Indonesia + English, dioptimalkan untuk HP.
 
 Live: https://yblig.github.io/moonlight-art-shop/
 
