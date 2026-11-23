@@ -600,7 +600,10 @@ const TOKO = {
     { foto: "images/produk-3.jpg" },
     { foto: "images/produk-4.jpg" },
     { foto: "images/produk-5.jpg" },
-    { foto: "images/produk-6.jpg" }
+    { foto: "images/produk-6.jpg" },
+    { foto: "images/produk-7.jpg" },
+    { foto: "images/produk-8.jpg" },
+    { foto: "images/produk-9.jpg", posisi: "center 30%" }
   ]
 };
 
@@ -614,7 +617,7 @@ const T = {
     heroLead:"Vas keramik, guci gerabah, dan dekorasi interior buatan tangan, dari vas mungil untuk rak sampai guci besar untuk sudut ruangan. Pesan langsung lewat WhatsApp.",
     ctaChat:"Pesan via WhatsApp", ctaMap:"Cara pesan", ctaDirections:"Lihat lokasi Art Shop", ctaOrder:"Chat sekarang", chipOrder:"Terima pesanan", lbAsk:"Pesan yang seperti ini",
     badgeT:"Buatan tangan", badgeS:"Keramik & gerabah",
-    marquee:["Vas Keramik","Gerabah","Guci Besar","Vas Dekoratif","Mangkuk","Dekorasi Interior"],
+    marquee:["Vas Keramik","Gerabah","Guci Besar","Vas Dekoratif","Topeng Dinding","Lampu Keramik","Mangkuk","Dekorasi Interior"],
     aboutEyebrow:"Tentang kami", aboutTitle:"Apa saja yang <em>kami jual</em>",
     aboutText:"Moonlight Art Shop menjual keramik dan gerabah buatan tangan dengan warna-warna alami: vas, guci, mangkuk, dan dekorasi interior. Cocok untuk rumah, kafe, hotel, atau villa.",
     prodEyebrow:"Contoh produk", prodTitle:"Sebagian <em>koleksi</em> kami",
@@ -646,7 +649,7 @@ const T = {
     heroLead:"Ceramic vases, earthenware jars and handmade interior décor, from small shelf vases to large floor jars. Order directly on WhatsApp.",
     ctaChat:"Order on WhatsApp", ctaMap:"How to order", ctaDirections:"See Art Shop location", ctaOrder:"Chat now", chipOrder:"Taking orders", lbAsk:"Order one like this",
     badgeT:"Handmade", badgeS:"Ceramics & pottery",
-    marquee:["Ceramic Vases","Earthenware","Large Jars","Sculptural Vases","Bowls","Interior Décor"],
+    marquee:["Ceramic Vases","Earthenware","Large Jars","Sculptural Vases","Wall Masks","Ceramic Lamps","Bowls","Interior Décor"],
     aboutEyebrow:"About us", aboutTitle:"What <em>we sell</em>",
     aboutText:"Moonlight Art Shop sells handmade ceramics and pottery in natural tones: vases, jars, bowls and interior décor. Perfect for homes, cafés, hotels and villas.",
     prodEyebrow:"Featured", prodTitle:"A few of our <em>pieces</em>",
@@ -703,7 +706,7 @@ function titleHTML(str){
   }).join(" ");
 }
 
-const media = (p, eager) => `<img src="${esc(p.foto)}" alt="" ${eager ? "" : 'loading="lazy"'} decoding="async" onload="this.classList.add('ok')">`;
+const media = (p, eager) => `<img src="${esc(p.foto)}" alt="" ${eager ? "" : 'loading="lazy"'} ${p.posisi && !eager ? `style="object-position:${esc(p.posisi)}"` : ""} decoding="async" onload="this.classList.add('ok')">`;
 
 function render(){
   const t = T[lang];
