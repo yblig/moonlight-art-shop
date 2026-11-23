@@ -2,244 +2,494 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Moonlight Art Shop</title>
-<meta name="description" content="Moonlight Art Shop: lukisan, ukiran kayu, patung, dan kerajinan tangan. Lihat alamat, peta, dan nomor WhatsApp kami.">
+<meta name="description" content="Moonlight Art Shop: vas keramik, gerabah, guci, dan dekorasi interior buatan tangan. Lihat alamat, peta, dan nomor WhatsApp kami.">
 <meta property="og:title" content="Moonlight Art Shop">
-<meta property="og:description" content="Lukisan, ukiran, patung & kerajinan tangan. Klik untuk lihat alamat, peta, dan kontak.">
+<meta property="og:description" content="Vas keramik, gerabah & dekorasi interior buatan tangan. Klik untuk lihat alamat, peta, dan kontak.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://yblig.github.io/moonlight-art-shop/images/og-cover.png">
+<meta property="og:image" content="https://yblig.github.io/moonlight-art-shop/images/og-cover.jpg">
 <meta property="og:url" content="https://yblig.github.io/moonlight-art-shop/">
-<meta name="theme-color" content="#0f1626">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1626'/%3E%3Cpath d='M40 14a20 20 0 1 0 12 32A16 16 0 1 1 40 14z' fill='%23e9c98b'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#14100d">
+<link rel="icon" type="image/png" href="images/icon-180.png">
+<link rel="apple-touch-icon" href="images/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 <style>
+/* =========================================================
+   TOKENS
+   ========================================================= */
 :root{
-  --night:#0f1626; --night-2:#172238; --night-3:#22304d;
-  --moon:#e9c98b; --moon-soft:#f4e4c1; --cream:#faf6ee; --paper:#fffdf8;
-  --ink:#1d2333; --muted:#5d6577; --line:#e7dfd0;
-  --wa:#1fa855;
-  --radius:18px;
+  --n0:#0d0a08; --n1:#14100d; --n2:#1c1713; --n3:#2a221c; --n4:#3b3027;
+  --gold:#e9c98b; --gold-2:#f6e7c6; --gold-3:#b8914f;
+  --cream:#f5eee3; --paper:#fbf7f0; --ink:#231c16; --muted:#6c6157; --line:#e6dccb; --clay:#8d663f; --sand:#d9c3a5;
+  --wa:#1fa855; --wa-2:#25d366;
+  --r:22px; --r-sm:14px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.locked{overflow:hidden}
 img{max-width:100%;display:block}
-a{color:inherit}
-.wrap{width:min(1100px,100% - 40px);margin-inline:auto}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
-.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#9a7b3f}
+a{color:inherit;-webkit-tap-highlight-color:transparent}
+button{font:inherit;-webkit-tap-highlight-color:transparent}
+.wrap{width:min(1160px,100% - 48px);margin-inline:auto}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.04;letter-spacing:-.015em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold-3)}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:currentColor;opacity:.7}
 
-/* ---------- top bar ---------- */
-.top{position:absolute;inset:0 0 auto;z-index:5}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--moon-soft);text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600}
-.brand svg{width:30px;height:30px}
-.lang{display:flex;border:1px solid rgba(233,201,139,.4);border-radius:99px;overflow:hidden;background:rgba(15,22,38,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.lang button{background:none;border:0;color:var(--moon-soft);font:inherit;font-size:.78rem;font-weight:700;padding:6px 12px;cursor:pointer;letter-spacing:.06em}
-.lang button.on{background:var(--moon);color:var(--night)}
+/* =========================================================
+   LOADER
+   ========================================================= */
+.loader{position:fixed;inset:0;z-index:100;background:var(--n1);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s}
+.loader.done{opacity:0;visibility:hidden}
+.loader-in{display:flex;flex-direction:column;align-items:center;gap:18px}
+.l-moon{width:84px;height:84px;border-radius:50%;box-shadow:0 0 60px 10px rgba(233,201,139,.3);animation:lrise 1.1s var(--ease-out) both}
+.loader span{font-family:Montserrat,sans-serif;font-weight:700;font-size:1.35rem;color:#fff;letter-spacing:.02em;animation:lfade 1s .25s var(--ease) both}
+@keyframes lrise{from{transform:translateY(30px) scale(.6);opacity:0}}
+@keyframes lfade{from{opacity:0;transform:translateY(8px)}}
 
-/* ---------- hero ---------- */
-.hero{position:relative;overflow:hidden;color:var(--cream);background:
-  radial-gradient(1200px 500px at 80% -10%,#2b3c63 0%,transparent 60%),
-  linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%);
-  padding:120px 0 90px}
-.stars{position:absolute;inset:0;pointer-events:none}
-.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.55;animation:tw 4s ease-in-out infinite}
-@keyframes tw{50%{opacity:.12}}
-.moon{position:absolute;right:max(4vw,20px);top:90px;width:clamp(140px,26vw,300px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 38% 36%,#fff8e6 0%,var(--moon-soft) 38%,var(--moon) 75%,#c9a35f 100%);
-  box-shadow:0 0 80px 20px rgba(233,201,139,.22),0 0 220px 60px rgba(233,201,139,.10)}
-.moon::before,.moon::after{content:"";position:absolute;border-radius:50%;background:rgba(170,130,70,.18)}
-.moon::before{width:18%;height:18%;left:56%;top:28%}
-.moon::after{width:11%;height:11%;left:30%;top:60%}
-.hero .wrap{position:relative;z-index:2}
-.hero h1{font-size:clamp(2.7rem,8vw,5.4rem);max-width:11ch;margin:14px 0 18px}
-.hero h1 em{font-style:italic;color:var(--moon)}
-.hero .eyebrow{color:var(--moon)}
-.hero p.lead{max-width:46ch;font-size:clamp(1rem,2.4vw,1.15rem);color:#d5d9e4}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:99px;font-weight:700;text-decoration:none;font-size:.98rem;transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-2px)}
+/* =========================================================
+   TOP PROGRESS + NAV
+   ========================================================= */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--gold-3),var(--gold),var(--gold-2));transform-origin:0 50%;transform:scaleX(0)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .4s,box-shadow .4s,transform .4s var(--ease)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.nav.solid{background:rgba(20,16,13,.86);box-shadow:0 10px 30px -20px rgba(0,0,0,.6)}
+@supports (backdrop-filter:blur(1px)){ @media (pointer:fine){ .nav.solid{background:rgba(20,16,13,.66);backdrop-filter:blur(14px) saturate(1.4)} } }
+.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-family:Montserrat,"DM Sans",sans-serif;font-size:1.22rem;font-weight:700;letter-spacing:.005em;white-space:nowrap}
+.brand img{width:36px;height:36px;flex:none;border-radius:50%;box-shadow:0 0 0 3px rgba(233,201,139,.18),0 6px 18px -6px rgba(0,0,0,.6)}
+.links{display:flex;gap:6px;align-items:center}
+.links a{color:#c9cfdc;text-decoration:none;font-size:.92rem;font-weight:500;padding:8px 14px;border-radius:99px;transition:color .2s,background .2s}
+.links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.links a.wa-mini{background:var(--wa);color:#fff;font-weight:700;margin-left:6px}
+.nav-r{display:flex;align-items:center;gap:12px}
+.lang{position:relative;display:flex;border:1px solid rgba(233,201,139,.35);border-radius:99px;padding:3px;background:rgba(13,10,8,.6)}
+.lang button{position:relative;z-index:1;background:none;border:0;color:var(--gold-2);font-size:.74rem;font-weight:700;width:38px;height:28px;cursor:pointer;letter-spacing:.06em;transition:color .3s}
+.lang button.on{color:var(--n1)}
+.lang .pill{position:absolute;top:3px;left:3px;width:38px;height:28px;border-radius:99px;background:var(--gold);transition:transform .45s var(--ease-out)}
+.lang.en .pill{transform:translateX(38px)}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:var(--cream);
+  background:radial-gradient(120% 80% at 75% 10%,#3a2c20 0%,transparent 55%),radial-gradient(80% 60% at 10% 100%,#2a1d16 0%,transparent 60%),linear-gradient(180deg,var(--n1) 0%,var(--n2) 100%);isolation:isolate}
+section.hero{padding:0}
+.hero.off *{animation-play-state:paused!important}
+.sky{position:absolute;inset:0;z-index:-3;pointer-events:none}
+.stars{position:absolute;top:0;left:0;width:1px;height:1px;border-radius:50%;background:transparent}
+.s1{animation:tw 5s ease-in-out infinite}
+.s2{animation:tw 7s 1.5s ease-in-out infinite}
+.s3{width:2px;height:2px;animation:tw 4s .8s ease-in-out infinite}
+@keyframes tw{50%{opacity:.25}}
+.shoot{position:absolute;width:140px;height:1.5px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,.95),transparent);opacity:0;transform-origin:0 50%;animation:shoot 9s linear infinite}
+.shoot:nth-child(4){top:12%;left:58%;animation-delay:2s}
+.shoot:nth-child(5){top:26%;left:30%;animation-delay:6.5s;animation-duration:12s}
+.shoot:nth-child(6){top:8%;left:84%;animation-delay:10s;animation-duration:14s}
+@keyframes shoot{0%{opacity:0;transform:rotate(155deg) translateX(0) scaleX(.3)}2%{opacity:1}8%{opacity:0;transform:rotate(155deg) translateX(360px) scaleX(1)}100%{opacity:0;transform:rotate(155deg) translateX(360px)}}
+
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.arch-wrap{position:relative;justify-self:end;width:min(100%,400px,calc((100svh - 200px)/1.37));aspect-ratio:3/4.1;will-change:transform}
+.moon-wrap{position:absolute;z-index:-1;right:-16%;top:-12%;width:62%;aspect-ratio:1;will-change:transform}
+.arch{position:absolute;inset:0;border-radius:999px 999px 26px 26px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.75),0 0 0 1px rgba(233,201,139,.25);clip-path:inset(100% 0 0 0 round 999px 999px 26px 26px);transition:clip-path 1.6s var(--ease-out) .35s}
+.ready .arch{clip-path:inset(0 0 0 0 round 999px 999px 26px 26px)}
+.arch img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform 2.4s var(--ease-out) .35s}
+.ready .arch img{transform:scale(1.02)}
+.arch::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(20,16,13,.35))}
+.arch-line{position:absolute;inset:-14px;border:1px solid rgba(233,201,139,.35);border-radius:999px 999px 34px 34px;pointer-events:none;opacity:0;transform:scale(.96);transition:opacity 1s 1.2s,transform 1.4s var(--ease-out) 1.2s}
+.ready .arch-line{opacity:1;transform:none}
+.badge{position:absolute;left:-34px;bottom:46px;background:rgba(251,247,240,.96);color:var(--ink);border-radius:18px;padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);opacity:0;transform:translateY(16px);transition:opacity .8s 1.5s,transform .9s var(--ease-out) 1.5s;animation:mfloat 6s 3s ease-in-out infinite}
+.ready .badge{opacity:1;transform:none}
+.badge b{display:block;font-family:"Cormorant Garamond",serif;font-size:1.25rem;line-height:1.1}
+.badge small{color:var(--muted);font-size:.76rem}
+.badge .bi{width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,var(--clay),#8d6040);display:grid;place-items:center;color:#fff}
+.badge .bi svg{width:22px;height:22px}
+.moon{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 36% 34%,#fffaf0 0%,#f8e8c4 30%,var(--gold) 68%,#c39b57 100%);
+  box-shadow:inset -18px -22px 50px rgba(150,105,45,.35),0 0 0 1px rgba(255,240,210,.12);animation:mfloat 9s ease-in-out infinite}
+.moon i{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(160,118,60,.10),rgba(160,118,60,.28))}
+.moon i:nth-child(1){width:20%;height:20%;left:56%;top:24%}
+.moon i:nth-child(2){width:12%;height:12%;left:28%;top:58%}
+.moon i:nth-child(3){width:8%;height:8%;left:62%;top:62%}
+.moon i:nth-child(4){width:6%;height:6%;left:38%;top:30%}
+.halo{position:absolute;inset:-45%;border-radius:50%;background:radial-gradient(circle,rgba(233,201,139,.28) 0%,rgba(233,201,139,.10) 35%,transparent 65%);animation:pulse 6s ease-in-out infinite}
+.ring{position:absolute;inset:-14%;border-radius:50%;border:1px solid rgba(233,201,139,.18);animation:spin 40s linear infinite}
+.ring::after{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 12px 2px rgba(246,231,198,.8)}
+@keyframes mfloat{50%{transform:translateY(-10px)}}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.75}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.dust{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.dust b{position:absolute;bottom:-10px;width:var(--s,4px);height:var(--s,4px);border-radius:50%;background:var(--gold-2);box-shadow:0 0 8px 1px rgba(246,231,198,.7);opacity:0;animation:rise var(--t,12s) var(--d,0s) linear infinite}
+@keyframes rise{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:.9}90%{opacity:.6}100%{transform:translate3d(var(--x,20px),-95vh,0);opacity:0}}
+
+.hills{position:absolute;left:0;right:0;bottom:-1px;z-index:-1;pointer-events:none}
+.hills svg{position:absolute;left:0;bottom:0;width:100%;height:auto;will-change:transform}
+.hills{height:100%}
+
+.hero-grid{position:relative;padding:110px 0 140px}
+.hero-in{position:relative;will-change:transform,opacity}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-size:clamp(2.8rem,5.6vw,5rem);max-width:12ch;margin:18px 0 20px}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:500;background:linear-gradient(100deg,var(--gold) 20%,#fff3d6 45%,var(--gold) 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sheen 6s 2s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em;margin-bottom:-.06em}
+.w>span{display:inline-block;transform:translateY(110%);transition:transform 1s var(--ease-out);transition-delay:calc(var(--i)*70ms + .1s)}
+.ready .w>span{transform:none}
+.lead{max-width:44ch;font-size:clamp(1rem,2.2vw,1.16rem);color:#c8cedb}
+.fade-up{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease-out);transition-delay:var(--dl,.6s)}
+.ready .fade-up{opacity:1;transform:none}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:99px;font-weight:700;text-decoration:none;font-size:.98rem;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
 .btn svg{width:20px;height:20px;flex:none}
-.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 24px -8px rgba(31,168,85,.6)}
-.btn-ghost{border:1.5px solid rgba(233,201,139,.55);color:var(--moon-soft)}
-.btn-dark{background:var(--night);color:var(--cream)}
-.btn-light{background:var(--paper);color:var(--ink);border:1.5px solid var(--line)}
-.quick{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:38px;font-size:.92rem;color:#b9bfcd}
-.quick span{display:flex;align-items:center;gap:8px}
-.quick svg{width:16px;height:16px;color:var(--moon)}
+.btn-wa{background:linear-gradient(135deg,var(--wa-2),var(--wa));color:#fff;box-shadow:0 12px 30px -10px rgba(31,168,85,.7)}
+.btn-wa::after{content:"";position:absolute;top:0;left:0;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:translateX(-120%) skewX(-20deg);animation:shine 4.5s 2.5s ease-in-out infinite}
+@keyframes shine{0%,70%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(260%) skewX(-20deg)}}
+.btn-ghost{border:1.5px solid rgba(233,201,139,.5);color:var(--gold-2)}
+@media (hover:hover){.btn:hover{transform:translateY(-3px)}.btn-ghost:hover{background:rgba(233,201,139,.1)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:.86rem;color:#d3d8e3}
+.chip svg{width:15px;height:15px;color:var(--gold)}
+.dot{width:8px;height:8px;border-radius:50%;background:#8a93a8;position:relative;flex:none}
+.dot.open{background:var(--wa-2)}
+.dot.open::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--wa-2);animation:ping 1.8s ease-out infinite}
+@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(1.7);opacity:0}}
 
-/* ---------- sections ---------- */
-section{padding:84px 0}
-.head{max-width:620px;margin-bottom:40px}
-.head h2{font-size:clamp(2.1rem,5vw,3.1rem);margin:10px 0 12px}
-.head p{color:var(--muted)}
+.scroll-hint{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#8f98ad;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;z-index:2}
+.scroll-hint i{width:22px;height:36px;border:1.5px solid rgba(233,201,139,.45);border-radius:12px;position:relative}
+.scroll-hint i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(11px);opacity:0}100%{opacity:0}}
 
-/* about / categories */
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.cat{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-.cat .ic{width:46px;height:46px;border-radius:12px;background:var(--night);display:grid;place-items:center;margin-bottom:16px}
-.cat .ic svg{width:24px;height:24px;color:var(--moon)}
-.cat h3{font-size:1.45rem;margin-bottom:6px}
-.cat p{color:var(--muted);font-size:.95rem}
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+.marquee{background:var(--n0);color:var(--gold-2);overflow:hidden;padding:18px 0;border-bottom:1px solid rgba(233,201,139,.12)}
+.track{display:flex;width:max-content;animation:slide 32s linear infinite}
+.track span{display:flex;align-items:center;gap:28px;padding-right:28px;font-family:"Cormorant Garamond",serif;font-size:clamp(1.4rem,3.6vw,2.1rem);font-style:italic;white-space:nowrap}
+.track span::after{content:"✦";font-style:normal;font-size:.7em;color:var(--gold-3)}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee.off .track{animation-play-state:paused}
 
-/* products */
-.products{background:var(--paper);border-block:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tile{display:block;width:100%;padding:0;border:0;cursor:zoom-in;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--night-3);transition:transform .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
-.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,22,38,.45)}
-.tile img,.tile svg{width:100%;height:100%;object-fit:cover;display:block}
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+section{position:relative;padding:110px 0}
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(2.4rem,5.6vw,3.8rem);margin:14px 0 14px}
+.head h2 em{font-style:italic;color:var(--gold-3);font-weight:500}
+.head p{color:var(--muted);font-size:1.04rem}
+.head.center{text-align:center;margin-inline:auto}
+.head.center .eyebrow::after{content:"";width:26px;height:1.5px;background:currentColor;opacity:.7}
 
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:50;background:rgba(10,14,24,.97);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:60px 16px}
-.lb.open{display:flex}
-body.lb-on .fab{display:none}
-.lb-img{width:min(900px,100%);max-height:100%;border-radius:14px;overflow:hidden}
-.lb-img img,.lb-img svg{width:100%;height:auto;max-height:80vh;object-fit:contain;display:block;margin:auto}
-.lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center}
-.lb-close{top:14px;right:14px}
-.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
-.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+/* reveal on scroll */
+[data-r]{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform 1s var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
+[data-r="scale"]{transform:scale(.92) translateY(20px)}
+[data-r="left"]{transform:translateX(-40px)}
+[data-r="right"]{transform:translateX(40px)}
+[data-r].in{opacity:1;transform:none}
+
+/* about */
+.about{background:var(--cream);overflow:hidden}
+.about::before{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(233,201,139,.28),transparent 65%);pointer-events:none}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cat{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px 26px;overflow:hidden;transform-style:preserve-3d;transition:box-shadow .4s,border-color .4s}
+.cat::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(233,201,139,.22),transparent 45%);opacity:0;transition:opacity .4s}
+.cat:hover{box-shadow:0 30px 60px -34px rgba(35,28,22,.45);border-color:#e2cfa5}
+.cat:hover::before{opacity:1}
+.cat .num{position:absolute;top:18px;right:22px;font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:600;color:rgba(184,145,79,.16);line-height:1}
+.cat .ic{position:relative;width:54px;height:54px;border-radius:16px;background:linear-gradient(145deg,var(--n2),var(--n4));display:grid;place-items:center;margin-bottom:22px;box-shadow:0 12px 24px -12px rgba(20,16,13,.7)}
+.cat .ic svg{width:26px;height:26px;color:var(--gold)}
+.cat .ic svg *{stroke-dasharray:80;stroke-dashoffset:80;transition:stroke-dashoffset 1.6s var(--ease) calc(var(--k,0)*120ms + .3s)}
+.cat.in .ic svg *{stroke-dashoffset:0}
+.cat h3{position:relative;font-size:1.6rem;margin-bottom:8px}
+.cat p{position:relative;color:var(--muted);font-size:.95rem}
+
+/* gallery */
+.gallery{background:var(--paper);border-top:1px solid var(--line)}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(180px,22vw,270px);gap:16px;grid-auto-flow:dense}
+.bento .tile:nth-child(6n+1){grid-column:span 2;grid-row:span 2}
+.tile{position:relative;display:block;width:100%;height:100%;padding:0;border:0;cursor:zoom-in;border-radius:var(--r);overflow:hidden;background:var(--n3);isolation:isolate}
+.tile .media{position:absolute;inset:0;transition:transform 1.1s var(--ease-out)}
+.tile .media img,.tile .media svg{width:100%;height:100%;object-fit:cover;display:block}
+.tile::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);background:linear-gradient(180deg,transparent 55%,rgba(13,10,8,.55));opacity:.6;transition:opacity .4s;z-index:1}
+.tile .zoom{position:absolute;right:14px;bottom:14px;z-index:2;width:40px;height:40px;border-radius:50%;background:rgba(255,252,246,.92);color:var(--ink);display:grid;place-items:center;transform:scale(.6);opacity:0;transition:transform .45s var(--ease-out),opacity .3s}
+.tile .zoom svg{width:18px;height:18px}
+@media (hover:hover){
+  .tile:hover .media{transform:scale(1.07)}
+  .tile:hover::after{opacity:1}
+  .tile:hover .zoom{transform:none;opacity:1}
+}
+@media (hover:none){ .tile .zoom{transform:none;opacity:.95;width:34px;height:34px;right:10px;bottom:10px} .tile .zoom svg{width:15px;height:15px} }
+.tile .media{background:linear-gradient(100deg,var(--n3) 30%,var(--n4) 50%,var(--n3) 70%);background-size:300% 100%;animation:sk 1.6s linear infinite}
+@keyframes sk{to{background-position:-150% 0}}
+.tile img{opacity:0;transition:opacity .6s}
+.tile img.ok{opacity:1}
 
 /* visit */
-.visit-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:stretch}
-.info{background:var(--night);color:var(--cream);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:22px}
-.info h3{font-size:1.9rem;color:var(--moon-soft)}
-.row{display:flex;gap:14px}
-.row .ic{width:40px;height:40px;flex:none;border-radius:10px;background:var(--night-3);display:grid;place-items:center}
-.row .ic svg{width:20px;height:20px;color:var(--moon)}
-.row small{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#98a0b3;font-weight:700}
+.visit{background:radial-gradient(80% 60% at 90% 0%,#3a2c20 0%,transparent 60%),linear-gradient(180deg,var(--n1),var(--n0));color:var(--cream);overflow:hidden}
+.visit .head p{color:#a9b1c3}
+.visit .head h2 em{color:var(--gold)}
+.visit-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:22px;align-items:stretch}
+.info{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(233,201,139,.18);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:24px;overflow:hidden}
+.info::before{content:"";position:absolute;width:260px;height:260px;right:-90px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(233,201,139,.22),transparent 65%)}
+.info-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.info h3{font-size:2rem;color:var(--gold-2)}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.06);color:#c9cfdc}
+.status.open{background:rgba(37,211,102,.12);color:#6ee7a0}
+.row{display:flex;gap:16px;position:relative}
+.row .ic{width:44px;height:44px;flex:none;border-radius:13px;background:rgba(233,201,139,.1);border:1px solid rgba(233,201,139,.2);display:grid;place-items:center}
+.row .ic svg{width:20px;height:20px;color:var(--gold)}
+.row small{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#8f98ad;font-weight:700;margin-bottom:2px}
 .row b,.row a{font-weight:500;color:var(--cream);text-decoration:none}
-.row a:hover{text-decoration:underline}
+.row a{border-bottom:1px dashed rgba(233,201,139,.4)}
 .hours{list-style:none;font-size:.95rem}
-.hours li{display:flex;justify-content:space-between;gap:12px}
+.hours li{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.hours li.today{color:var(--gold)}
 .info .cta{margin-top:auto}
-.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--night-3)}
-.map iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+.info .cta .btn{flex:1}
+.map{position:relative;border-radius:var(--r);overflow:hidden;min-height:420px;background:var(--n3);border:1px solid rgba(233,201,139,.18)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
+.map .ph{position:absolute;inset:0;display:grid;place-items:center;background:
+  repeating-linear-gradient(0deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),
+  repeating-linear-gradient(90deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),var(--n2)}
+.pin{position:relative;width:54px;height:54px}
+.pin svg{width:54px;height:54px;color:var(--gold);animation:bob 2.2s ease-in-out infinite;position:relative;z-index:1}
+.pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:40px;height:12px;margin-left:-20px;border-radius:50%;border:2px solid var(--gold);animation:ping 2.2s ease-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
 
 /* footer */
-footer{background:var(--night);color:#98a0b3;padding:36px 0 110px;font-size:.9rem}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
-footer .brand{font-size:1.2rem}
+footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;overflow:hidden;position:relative}
+.big{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(4rem,17vw,13rem);line-height:.9;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(233,201,139,.28);white-space:nowrap;margin-bottom:34px;user-select:none}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding-top:26px}
+.foot .brand{font-size:1.1rem}
+.foot .brand img{width:32px;height:32px}
 
-/* floating WA */
-.fab{position:fixed;right:18px;bottom:18px;z-index:20;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(31,168,85,.7);transition:transform .15s}
-.fab:hover{transform:scale(1.06)}
+/* floating WA (desktop) */
+.fab{position:fixed;right:24px;bottom:24px;z-index:30;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--wa-2),var(--wa));display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(31,168,85,.8);transition:transform .3s var(--ease),opacity .3s;transform:scale(0)}
+.fab.show{transform:scale(1)}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa-2);animation:ping 2.4s ease-out infinite}
 .fab svg{width:30px;height:30px;color:#fff}
+@media (hover:hover){.fab.show:hover{transform:scale(1.08)}}
 
-@media (max-width:820px){
+/* bottom tab bar (mobile) */
+.tabbar{display:none}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:70px 16px 96px;background:rgba(10,8,6,.96);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
+.lb.open{opacity:1;visibility:visible}
+.lb-stage{width:min(940px,100%);max-height:100%;border-radius:18px;overflow:hidden;transform:scale(.92);transition:transform .5s var(--ease-out);box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.lb.open .lb-stage{transform:none}
+.lb-stage.swap{animation:swap .45s var(--ease-out)}
+@keyframes swap{from{opacity:.2;transform:translateX(var(--dir,30px)) scale(.98)}}
+.lb-stage{background:transparent;box-shadow:none;display:flex;justify-content:center}
+.lb-stage img{width:auto;max-width:100%;height:auto;max-height:76vh;object-fit:contain;display:block;margin:auto;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.lb-btn{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.12);width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+.lb-btn svg{width:22px;height:22px}
+.lb-close{top:16px;right:16px}
+.lb-prev{left:18px;top:50%;margin-top:-24px}
+.lb-next{right:18px;top:50%;margin-top:-24px}
+.lb-count{position:absolute;top:28px;left:50%;transform:translateX(-50%);color:#c9cfdc;font-size:.85rem;letter-spacing:.14em}
+.lb-dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.lb-dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.3);transition:width .35s var(--ease-out),background .3s}
+.lb-dots i.on{width:22px;background:var(--gold)}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .cats{grid-template-columns:1fr 1fr}
   .visit-grid{grid-template-columns:1fr}
-  .hero{padding:104px 0 70px}
-  .moon{top:70px;right:-30px;opacity:.9}
-  section{padding:64px 0}
+  .links a:not(.wa-mini){display:none}
 }
-@media (max-width:640px){
-  .wrap{width:calc(100% - 32px)}
-  .grid{grid-template-columns:1fr 1fr;gap:10px}
-  .tile{border-radius:14px}
-  .cats{grid-template-columns:1fr 1fr;gap:10px}
-  .cat{padding:16px;border-radius:14px}
-  .cat .ic{width:38px;height:38px;border-radius:10px;margin-bottom:12px}
-  .cat .ic svg{width:20px;height:20px}
-  .cat h3{font-size:1.2rem}
-  .cat p{font-size:.84rem;line-height:1.45}
-  .head{margin-bottom:26px}
-  .info{padding:22px}
-  .map,.map iframe{min-height:300px}
-  .lb-prev,.lb-next{top:auto!important;bottom:18px;transform:none!important}
-  .lb-prev{left:calc(50% - 56px)!important}
-  .lb-next{right:calc(50% - 56px)!important}
-}
-@media (max-width:520px){
-  .hero{padding:96px 0 56px}
-  .moon{width:150px;top:-36px;right:-46px}
-  .hero h1{margin-top:10px;max-width:none;font-size:clamp(2.4rem,11vw,3rem)}
-  .moon{opacity:.75}
+@media (max-width:720px){
+  .wrap{width:calc(100% - 36px)}
+  section{padding:80px 0}
+  .nav .wrap{height:64px}
+  .links{display:none}
+  .brand{font-size:1.1rem}
+  .brand img{width:32px;height:32px}
+  .hero{align-items:flex-start}
+  .hero-grid{grid-template-columns:1fr;gap:26px;padding:92px 0 calc(130px + var(--safe-b))}
+  .arch-wrap{justify-self:start;width:min(40vw,170px);order:-1;margin-left:6px}
+  .hero h1{margin-top:10px}
+  .moon-wrap{width:78%;right:-70%;top:-12%}
+  .badge{left:calc(100% + 18px);right:auto;bottom:auto;top:46%;padding:9px 12px;gap:10px;white-space:nowrap}
+  .badge b{font-size:1rem}
+  .badge small{font-size:.7rem}
+  .badge .bi{width:32px;height:32px;border-radius:10px}
+  .badge .bi svg{width:18px;height:18px}
+  .arch-line{inset:-10px}
+  .hero h1{font-size:clamp(2.7rem,12.5vw,3.6rem);max-width:none;margin:14px 0 16px}
+  .lead{font-size:.98rem;line-height:1.55}
   .cta{margin-top:26px}
-  .cta .btn{flex:1 1 100%;justify-content:center;padding:15px 16px;white-space:nowrap}
-  .quick{flex-direction:column;gap:8px;margin-top:26px}
-  footer .wrap{flex-direction:column;align-items:flex-start}
+  .cta .btn{flex:1 1 100%;padding:16px}
+  .chips{margin-top:22px;gap:8px}
+  .chip{font-size:.8rem;padding:7px 12px}
+  .scroll-hint{display:none}
+  .head{margin-bottom:32px}
+  .cats{gap:12px}
+  .cat{padding:20px 16px 18px;border-radius:18px}
+  .cat .num{font-size:2rem;top:14px;right:14px}
+  .cat .ic{width:44px;height:44px;border-radius:13px;margin-bottom:16px}
+  .cat .ic svg{width:22px;height:22px}
+  .cat h3{font-size:1.28rem}
+  .cat p{font-size:.85rem;line-height:1.5}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:44vw;gap:10px}
+  .bento .tile:nth-child(6n+1){grid-column:span 2;grid-row:span 1}
+  .bento .tile:nth-child(6n){grid-column:span 2}
+  .tile{border-radius:16px}
+  .info{padding:24px 20px}
+  .info h3{font-size:1.7rem}
+  .map{min-height:320px}
+  footer{padding:56px 0 calc(120px + var(--safe-b))}
+  .big{margin-bottom:24px}
+  .foot{flex-direction:column;align-items:flex-start}
+  .fab{display:none}
+  .lb{padding:64px 0 110px}
+  .lb-stage{border-radius:0}
+  .lb-prev,.lb-next{top:auto;bottom:24px;margin:0}
+  .lb-prev{left:18px}.lb-next{right:18px}
+  .lb-dots{bottom:44px}
+
+  /* app-style bottom bar */
+  .tabbar{display:flex;position:fixed;z-index:45;left:12px;right:12px;bottom:calc(12px + var(--safe-b));height:66px;border-radius:22px;background:rgba(20,16,13,.94);border:1px solid rgba(233,201,139,.16);box-shadow:0 18px 40px -14px rgba(0,0,0,.7);align-items:center;justify-content:space-around;padding:0 6px;transform:translateY(140%);transition:transform .6s var(--ease-out)}
+  .tabbar.show{transform:none}
+  .tabbar a{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:#8f98ad;font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:8px 0;transition:color .3s}
+  .tabbar a svg{width:22px;height:22px;transition:transform .4s var(--ease-out)}
+  .tabbar a.on{color:var(--gold)}
+  .tabbar a.on svg{transform:translateY(-2px)}
+  .tabbar a.on::after{content:"";position:absolute;bottom:2px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .tabbar .t-wa{flex:none;width:58px;height:58px;margin-top:-30px;border-radius:50%;background:linear-gradient(135deg,var(--wa-2),var(--wa));color:#fff;justify-content:center;box-shadow:0 12px 24px -8px rgba(31,168,85,.85),0 0 0 5px var(--n1);padding:0}
+  .tabbar .t-wa svg{width:28px;height:28px}
+  .tabbar .t-wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa-2);animation:ping 2.4s ease-out infinite}
 }
-@media (max-width:360px){
+@media (max-width:370px){
   .cats{grid-template-columns:1fr}
+  .tabbar a{font-size:.6rem}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+  [data-r],.fade-up,.w>span{opacity:1!important;transform:none!important}
+}
 </style>
 </head>
-<body>
+<body class="locked">
 
 <!--
   =====================================================================
-  DATA TOKO — CUKUP UBAH BAGIAN "TOKO" DI BAGIAN <script> PALING BAWAH.
-  Nomor, alamat, jam buka, link maps, dan daftar produk semuanya di sana.
+  DATA TOKO — CUKUP UBAH OBJEK "TOKO" DI <script> PALING BAWAH.
   =====================================================================
 -->
 
-<header class="top">
+<div class="loader" id="loader" aria-hidden="true"><div class="loader-in"><img class="l-moon" src="images/logo-mark.png" alt=""><span>Moonlight</span></div></div>
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 10a22 22 0 1 0 14 36A17 17 0 1 1 40 10z" fill="#e9c98b"/></svg>
-      Moonlight Art Shop
+    <a class="brand" href="#home">
+      <img src="images/logo-mark.png" alt="" width="36" height="36"><span>Moonlight</span>
     </a>
-    <div class="lang" role="group" aria-label="Bahasa">
-      <button data-lang="id" class="on">ID</button>
-      <button data-lang="en">EN</button>
+    <div class="nav-r">
+      <nav class="links">
+        <a href="#tentang" data-t="navAbout"></a>
+        <a href="#koleksi" data-t="navGallery"></a>
+        <a href="#lokasi" data-t="navVisit"></a>
+        <a class="wa-mini js-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+      <div class="lang" id="lang" role="group" aria-label="Bahasa / Language">
+        <span class="pill"></span>
+        <button data-lang="id" class="on">ID</button>
+        <button data-lang="en">EN</button>
+      </div>
     </div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="stars" id="stars"></div>
-  <div class="moon" aria-hidden="true"></div>
-  <div class="wrap">
-    <span class="eyebrow" data-t="heroEyebrow"></span>
-    <h1 data-t="heroTitle"></h1>
-    <p class="lead" data-t="heroLead"></p>
-    <div class="cta">
+<main>
+<section class="hero" id="home">
+  <div class="sky" aria-hidden="true">
+    <div class="stars s1"></div><div class="stars s2"></div><div class="stars s3"></div>
+    <div class="shoot"></div><div class="shoot"></div><div class="shoot"></div>
+  </div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
+  <div class="hills" aria-hidden="true">
+    <svg id="h3" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:42vh;min-height:220px"><path fill="#241c16" d="M0 210 C 160 150 280 170 420 140 S 700 60 860 120 S 1120 190 1260 130 S 1400 110 1440 120 V320 H0Z"/></svg>
+    <svg id="h2" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:32vh;min-height:170px"><path fill="#1a1410" d="M0 240 C 200 190 330 230 520 200 S 820 140 1000 190 S 1280 240 1440 200 V320 H0Z"/><g fill="#1a1410"><path d="M1090 196 l12-46 12 46z"/><path d="M1112 198 l9-34 9 34z"/><path d="M240 214 l11-40 11 40z"/><path d="M262 216 l8-30 8 30z"/></g></svg>
+    <svg id="h1" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:22vh;min-height:120px"><path fill="#0d0a08" d="M0 270 C 240 240 420 280 640 258 S 1040 220 1240 254 S 1400 268 1440 262 V320 H0Z"/></svg>
+  </div>
+
+  <div class="wrap hero-grid">
+  <div class="hero-in" id="heroIn">
+    <span class="eyebrow fade-up" style="--dl:.05s" data-t="heroEyebrow"></span>
+    <h1 id="heroTitle"></h1>
+    <p class="lead fade-up" style="--dl:.75s" data-t="heroLead"></p>
+    <div class="cta fade-up" style="--dl:.9s">
       <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="ctaChat"></span></a>
       <a class="btn btn-ghost" href="#lokasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span data-t="ctaMap"></span></a>
     </div>
-    <div class="quick">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><b class="js-area"></b></span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg><b class="js-hours-short"></b></span>
+    <div class="chips fade-up" style="--dl:1.05s">
+      <span class="chip"><i class="dot js-dot"></i><span class="js-status-short"></span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span class="js-area"></span></span>
     </div>
   </div>
+  <div class="arch-wrap" id="archWrap">
+    <div class="moon-wrap" id="moon" aria-hidden="true">
+      <div class="halo"></div><div class="ring"></div>
+      <div class="moon"><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="arch-line" aria-hidden="true"></div>
+    <div class="arch"><img src="images/hero.jpg" alt="Koleksi vas keramik Moonlight Art Shop" fetchpriority="high"></div>
+    <div class="badge"><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v3c-3 1.5-5 4.5-5 8a7 7 0 0 0 14 0c0-3.5-2-6.5-5-8V3"/></svg></span><span><b data-t="badgeT"></b><small data-t="badgeS"></small></span></div>
+  </div>
+  </div>
+  <a class="scroll-hint" href="#tentang" aria-hidden="true"><i></i>Scroll</a>
 </section>
 
-<section id="tentang">
+<div class="marquee" id="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="about" id="tentang">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" data-t="aboutEyebrow"></span>
-      <h2 data-t="aboutTitle"></h2>
-      <p data-t="aboutText"></p>
+      <span class="eyebrow" data-r data-t="aboutEyebrow"></span>
+      <h2 data-r style="--k:1" data-t="aboutTitle"></h2>
+      <p data-r style="--k:2" data-t="aboutText"></p>
     </div>
     <div class="cats" id="cats"></div>
   </div>
 </section>
 
-<section class="products" id="produk">
+<section class="gallery" id="koleksi">
   <div class="wrap">
-    <div class="head">
-      <span class="eyebrow" data-t="prodEyebrow"></span>
-      <h2 data-t="prodTitle"></h2>
-      <p data-t="prodText"></p>
+    <div class="head center">
+      <span class="eyebrow" data-r data-t="prodEyebrow"></span>
+      <h2 data-r style="--k:1" data-t="prodTitle"></h2>
+      <p data-r style="--k:2" data-t="prodText"></p>
     </div>
-    <div class="grid" id="grid"></div>
+    <div class="bento" id="grid"></div>
   </div>
 </section>
 
-<section id="lokasi">
+<section class="visit" id="lokasi">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" data-t="visitEyebrow"></span>
-      <h2 data-t="visitTitle"></h2>
+      <span class="eyebrow" data-r data-t="visitEyebrow"></span>
+      <h2 data-r style="--k:1" data-t="visitTitle"></h2>
+      <p data-r style="--k:2" data-t="visitText"></p>
     </div>
     <div class="visit-grid">
-      <div class="info">
-        <h3>Moonlight Art Shop</h3>
+      <div class="info" data-r="left">
+        <div class="info-top">
+          <h3>Moonlight Art Shop</h3>
+          <span class="status js-status"><i class="dot js-dot"></i><span class="js-status-text"></span></span>
+        </div>
         <div class="row">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg></div>
           <div><small data-t="lblAddress"></small><b class="js-address"></b></div>
@@ -257,198 +507,368 @@ footer .brand{font-size:1.2rem}
           <a class="btn btn-ghost js-maps" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-nav"/></svg><span data-t="ctaDirections"></span></a>
         </div>
       </div>
-      <div class="map"><iframe class="js-embed" title="Peta lokasi Moonlight Art Shop" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="map" data-r="right" id="map">
+        <div class="ph"><div class="pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div></div>
+      </div>
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <span class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 10a22 22 0 1 0 14 36A17 17 0 1 1 40 10z" fill="#e9c98b"/></svg>Moonlight Art Shop</span>
-    <span>© <span id="yr"></span> Moonlight Art Shop · <span class="js-area"></span></span>
+    <div class="big" aria-hidden="true">Moonlight</div>
+    <div class="foot">
+      <span class="brand"><img src="images/logo-mark.png" alt="" width="32" height="32"><span>Moonlight</span></span>
+      <span>© <span id="yr"></span> Moonlight Art Shop · <span class="js-area"></span></span>
+    </div>
   </div>
 </footer>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true">
-  <button class="lb-close" aria-label="Tutup">&times;</button>
-  <button class="lb-prev" aria-label="Sebelumnya">&#8249;</button>
-  <div class="lb-img"></div>
-  <button class="lb-next" aria-label="Berikutnya">&#8250;</button>
-</div>
+<a class="fab js-wa" id="fab" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
 
-<a class="fab js-wa" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+<nav class="tabbar" id="tabbar" aria-label="Navigasi">
+  <a href="#home" data-sec="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="tabHome"></span></a>
+  <a href="#koleksi" data-sec="koleksi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span data-t="tabGallery"></span></a>
+  <a class="t-wa js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+  <a href="#tentang" data-sec="tentang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span data-t="tabAbout"></span></a>
+  <a href="#lokasi" data-sec="lokasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pin"/></svg><span data-t="tabVisit"></span></a>
+</nav>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto produk">
+  <span class="lb-count" id="lbCount"></span>
+  <button class="lb-btn lb-close" aria-label="Tutup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-btn lb-prev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-btn lb-next" aria-label="Berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.36A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.08.8.82-3-.2-.31a8.2 8.2 0 1 1 6.94 3.84zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.85 2.03 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.17 3.68c1.55.67 2.16.73 2.93.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.1-.22-.16-.47-.28z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.36A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.150l-.3-.18-3.08.8.82-3-.2-.31a8.2 8.2 0 1 1 6.940 3.840zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.85 2.03 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.17 3.68c1.55.67 2.16.73 2.93.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.1-.22-.16-.47-.28z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 1 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></symbol>
-  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L12 14.8 9.2 12z"/><path d="M8 13c-2.2 0-4 1.8-4 4 0 1.3-.7 2.3-2 3 4 1 8-.5 8-4.2"/></symbol>
-  <symbol id="i-carve" viewBox="0 0 24 24"><path d="M12 3c3 2 5 5 5 9s-2 7-5 9c-3-2-5-5-5-9s2-7 5-9z"/><path d="M12 7v10M9.5 10h5M9.5 14h5"/></symbol>
-  <symbol id="i-statue" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M8 21h8M9 21l1-6-3-3 2-3h6l2 3-3 3 1 6"/></symbol>
-  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4.5 9 8 12 8zm0 0s2-5 4.5-3.5S15 8 12 8z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M10 4H4v6M14 20h6v-6M4 4l6 6M20 20l-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 <script>
 /* =====================================================================
    DATA TOKO — ganti isian di bawah ini saja.
-   - telepon: format internasional tanpa + dan tanpa spasi (62812xxxxxxx)
-   - linkMaps: link "Bagikan" dari Google Maps (maps.app.goo.gl/...)
-   - cariDiMaps: teks pencarian / koordinat untuk peta di halaman,
-                 mis. "-8.5069,115.2625" atau "Moonlight Art Shop Ubud"
-   - foto produk: taruh file di folder images/ lalu isi foto: "images/nama.jpg"
-                  kalau dikosongkan, kartu memakai ilustrasi bawaan.
+   - telepon     : format internasional tanpa + dan spasi (62812xxxxxxx)
+   - linkMaps    : link "Bagikan" dari Google Maps (maps.app.goo.gl/...)
+   - cariDiMaps  : koordinat atau nama toko di Maps, untuk peta di halaman
+                   contoh "-8.5069,115.2625" atau "Moonlight Art Shop Ubud"
+   - zonaWaktu   : zona waktu toko (WITA = Asia/Makassar, WIB = Asia/Jakarta)
+   - jam         : hari 0=Minggu, 1=Senin ... 6=Sabtu, jam "HH:MM"
+   - galeri      : foto contoh produk di folder images/. Tambah/kurangi baris
+                   untuk menambah/mengurangi foto.
    ===================================================================== */
 const TOKO = {
-  telepon: "6281234567890",                 // TODO: nomor asli
-  teleponTampil: "+62 812-3456-7890",       // TODO: nomor asli
+  telepon: "6281234567890",                   // TODO: nomor asli
+  teleponTampil: "+62 812-3456-7890",         // TODO: nomor asli
   alamat: "Jl. Contoh No. 1, Kota, Provinsi", // TODO: alamat lengkap
-  area: "Kota, Provinsi",                   // TODO: kota singkat (tampil di atas)
-  linkMaps: "",                             // TODO: link share Google Maps
-  cariDiMaps: "Moonlight Art Shop",         // TODO: koordinat / nama di Maps
+  area: "Kota, Provinsi",                     // TODO: kota singkat
+  linkMaps: "",                               // TODO: link share Google Maps
+  cariDiMaps: "Moonlight Art Shop",           // TODO: koordinat / nama di Maps
+  zonaWaktu: "Asia/Makassar",
   jam: [
-    { id: "Senin – Sabtu", en: "Mon – Sat", jam: "09.00 – 21.00" },
-    { id: "Minggu",        en: "Sunday",    jam: "10.00 – 20.00" }
+    { hari:[1,2,3,4,5,6], buka:"09:00", tutup:"21:00", id:"Senin – Sabtu", en:"Mon – Sat" },
+    { hari:[0],           buka:"10:00", tutup:"20:00", id:"Minggu",        en:"Sunday" }
   ],
-  jamSingkat: { id: "Buka setiap hari · 09.00 – 21.00", en: "Open daily · 9 AM – 9 PM" },
-  // Contoh produk: cukup foto saja. Isi foto: "images/produk-1.jpg" dst.
-  // Kalau foto dikosongkan, dipakai ilustrasi bawaan (art).
   galeri: [
-    { foto: "", art: "paint"  },
-    { foto: "", art: "mask"   },
-    { foto: "", art: "statue" },
-    { foto: "", art: "craft"  },
-    { foto: "", art: "frame"  },
-    { foto: "", art: "gift"   }
+    { foto: "images/produk-1.jpg" },
+    { foto: "images/produk-2.jpg" },
+    { foto: "images/produk-3.jpg" },
+    { foto: "images/produk-4.jpg" },
+    { foto: "images/produk-5.jpg" },
+    { foto: "images/produk-6.jpg" }
   ]
 };
 
 /* ---------- teks halaman ---------- */
 const T = {
   id: {
-    heroEyebrow: "Galeri seni & kerajinan",
-    heroTitle: "Karya seni untuk <em>setiap sudut</em> rumah",
-    heroLead: "Moonlight Art Shop menyediakan lukisan, ukiran, patung, dan kerajinan tangan pilihan. Mampir langsung ke toko atau tanya dulu lewat WhatsApp.",
-    ctaChat: "Chat WhatsApp", ctaMap: "Lihat lokasi", ctaDirections: "Petunjuk arah",
-    aboutEyebrow: "Tentang kami", aboutTitle: "Apa saja yang kami jual",
-    aboutText: "Kami mengumpulkan karya seniman dan pengrajin lokal, dari hiasan kecil untuk oleh-oleh sampai karya besar untuk rumah, kantor, atau villa.",
-    prodEyebrow: "Contoh produk", prodTitle: "Sebagian koleksi kami",
-    prodText: "Beberapa contoh karya yang bisa Anda temukan di toko kami.",
-    close: "Tutup",
-    visitEyebrow: "Kunjungi kami", visitTitle: "Alamat & kontak",
-    lblAddress: "Alamat", lblPhone: "Telepon / WhatsApp", lblHours: "Jam buka",
-    waMsg: "Halo Moonlight Art Shop, saya mau tanya-tanya.",
-    cats: [
-      ["i-brush","Lukisan","Lukisan kanvas dengan berbagai gaya: pemandangan, abstrak, hingga motif tradisional."],
-      ["i-carve","Ukiran Kayu","Topeng, panel, dan hiasan ukir yang dikerjakan dengan tangan."],
-      ["i-statue","Patung","Patung kayu dan batu untuk dekorasi dalam maupun luar ruangan."],
-      ["i-gift","Kerajinan & Souvenir","Anyaman, pernak-pernik, dan oleh-oleh khas untuk dibawa pulang."]
+    navAbout:"Tentang", navGallery:"Koleksi", navVisit:"Lokasi",
+    tabHome:"Beranda", tabGallery:"Koleksi", tabAbout:"Tentang", tabVisit:"Lokasi",
+    heroEyebrow:"Keramik · Gerabah · Dekorasi",
+    heroTitle:"Karya *tanah liat* untuk setiap sudut rumah",
+    heroLead:"Vas keramik, guci gerabah, dan dekorasi interior buatan tangan, dari vas mungil untuk rak sampai guci besar untuk sudut ruangan. Mampir ke toko atau tanya dulu lewat WhatsApp.",
+    ctaChat:"Chat WhatsApp", ctaMap:"Lihat lokasi", ctaDirections:"Petunjuk arah",
+    badgeT:"Buatan tangan", badgeS:"Keramik & gerabah",
+    marquee:["Vas Keramik","Gerabah","Guci Besar","Vas Dekoratif","Mangkuk","Dekorasi Interior"],
+    aboutEyebrow:"Tentang kami", aboutTitle:"Apa saja yang <em>kami jual</em>",
+    aboutText:"Moonlight Art Shop menjual keramik dan gerabah buatan tangan dengan warna-warna alami: vas, guci, mangkuk, dan dekorasi interior. Cocok untuk rumah, kafe, hotel, atau villa.",
+    prodEyebrow:"Contoh produk", prodTitle:"Sebagian <em>koleksi</em> kami",
+    prodText:"Beberapa contoh karya yang bisa Anda temukan di toko kami.",
+    visitEyebrow:"Kunjungi kami", visitTitle:"Datang & lihat <em>langsung</em>",
+    visitText:"Tekstur tanah liat paling terasa kalau dilihat dari dekat. Kami tunggu kedatangan Anda.",
+    lblAddress:"Alamat", lblPhone:"Telepon / WhatsApp", lblHours:"Jam buka",
+    open:"Buka sekarang", closed:"Sedang tutup", openUntil:t=>`Buka · tutup ${t}`, closedShort:"Sedang tutup",
+    waMsg:"Halo Moonlight Art Shop, saya mau tanya-tanya.",
+    enlarge:"Perbesar foto",
+    cats:[
+      ["vase","Vas Keramik","Vas berbagai bentuk dan ukuran, dari yang mungil untuk meja sampai yang tinggi untuk lantai."],
+      ["jar","Gerabah & Guci","Guci dan tempayan tanah liat bertekstur alami untuk sudut ruangan, teras, atau taman."],
+      ["donut","Vas Dekoratif","Bentuk modern dan organik, seperti vas berlubang dan bentuk lengkung, untuk tampilan minimalis."],
+      ["bowl","Mangkuk & Aksen","Mangkuk, wadah, dan pernak-pernik keramik untuk mempercantik rak dan meja."]
     ]
   },
   en: {
-    heroEyebrow: "Art & craft gallery",
-    heroTitle: "Art for <em>every corner</em> of your home",
-    heroLead: "Moonlight Art Shop carries paintings, carvings, statues and handpicked handicrafts. Drop by the shop or message us on WhatsApp first.",
-    ctaChat: "Chat on WhatsApp", ctaMap: "See location", ctaDirections: "Get directions",
-    aboutEyebrow: "About us", aboutTitle: "What we sell",
-    aboutText: "We bring together work by local artists and artisans, from small souvenirs to statement pieces for your home, office or villa.",
-    prodEyebrow: "Featured products", prodTitle: "A few of our pieces",
-    prodText: "A few examples of what you'll find in our shop.",
-    close: "Close",
-    visitEyebrow: "Visit us", visitTitle: "Address & contact",
-    lblAddress: "Address", lblPhone: "Phone / WhatsApp", lblHours: "Opening hours",
-    waMsg: "Hi Moonlight Art Shop, I have a question.",
-    cats: [
-      ["i-brush","Paintings","Canvas paintings in many styles: landscapes, abstracts and traditional motifs."],
-      ["i-carve","Wood Carvings","Masks, panels and ornaments, carved by hand."],
-      ["i-statue","Statues","Wood and stone statues for indoor and outdoor décor."],
-      ["i-gift","Crafts & Souvenirs","Weaving, trinkets and local gifts to take home."]
+    navAbout:"About", navGallery:"Collection", navVisit:"Visit",
+    tabHome:"Home", tabGallery:"Gallery", tabAbout:"About", tabVisit:"Visit",
+    heroEyebrow:"Ceramics · Pottery · Décor",
+    heroTitle:"Handmade *clay pieces* for every corner",
+    heroLead:"Ceramic vases, earthenware jars and handmade interior décor, from small shelf vases to large floor jars. Visit the shop or message us on WhatsApp first.",
+    ctaChat:"Chat on WhatsApp", ctaMap:"See location", ctaDirections:"Get directions",
+    badgeT:"Handmade", badgeS:"Ceramics & pottery",
+    marquee:["Ceramic Vases","Earthenware","Large Jars","Sculptural Vases","Bowls","Interior Décor"],
+    aboutEyebrow:"About us", aboutTitle:"What <em>we sell</em>",
+    aboutText:"Moonlight Art Shop sells handmade ceramics and pottery in natural tones: vases, jars, bowls and interior décor. Perfect for homes, cafés, hotels and villas.",
+    prodEyebrow:"Featured", prodTitle:"A few of our <em>pieces</em>",
+    prodText:"A few examples of what you'll find in our shop.",
+    visitEyebrow:"Visit us", visitTitle:"Come see it <em>in person</em>",
+    visitText:"Clay textures are best seen up close. We'd love to see you.",
+    lblAddress:"Address", lblPhone:"Phone / WhatsApp", lblHours:"Opening hours",
+    open:"Open now", closed:"Closed now", openUntil:t=>`Open · closes ${t}`, closedShort:"Closed now",
+    waMsg:"Hi Moonlight Art Shop, I have a question.",
+    enlarge:"Enlarge photo",
+    cats:[
+      ["vase","Ceramic Vases","Vases in every shape and size, from tabletop pieces to tall floor vases."],
+      ["jar","Earthenware Jars","Clay jars and urns with natural textures for corners, terraces or gardens."],
+      ["donut","Sculptural Vases","Modern, organic forms like open-centre and curved vases for a minimal look."],
+      ["bowl","Bowls & Accents","Bowls, vessels and small ceramic accents for shelves and tables."]
     ]
   }
 };
 
-/* ---------- ilustrasi bawaan (dipakai kalau foto belum ada) ---------- */
-const ART = {
-  paint:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#22304d"/><rect x="70" y="40" width="260" height="200" fill="#c9a35f"/><rect x="82" y="52" width="236" height="176" fill="#f4e4c1"/><rect x="82" y="52" width="236" height="110" fill="#e9b97a"/><circle cx="250" cy="105" r="26" fill="#fff4d6"/><path d="M82 170l50-40 40 30 50-50 96 70v48H82z" fill="#5b7a5a"/><path d="M82 195l70-30 60 25 106-20v58H82z" fill="#3e5a46"/><rect x="190" y="240" width="20" height="40" fill="#8a6a3c"/></svg>`,
-  mask:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2b2420"/><ellipse cx="200" cy="150" rx="88" ry="112" fill="#a8743f"/><ellipse cx="200" cy="150" rx="74" ry="98" fill="#c08a4e"/><path d="M140 125q25-22 48 0q-24 14-48 0zM212 125q25-22 48 0q-24 14-48 0z" fill="#2b2420"/><path d="M200 135v40l-12 8h24l-12-8" stroke="#7a5230" stroke-width="5" fill="none"/><path d="M160 205q40 28 80 0q-40 10-80 0z" fill="#7a2f22"/><path d="M130 85q70-50 140 0" stroke="#e9c98b" stroke-width="7" fill="none"/><circle cx="200" cy="62" r="9" fill="#e9c98b"/></svg>`,
-  statue:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2f3a3a"/><rect x="140" y="245" width="120" height="30" rx="4" fill="#5c6766"/><circle cx="200" cy="80" r="30" fill="#9aa39f"/><path d="M200 112c-38 0-56 30-56 70 0 22 14 40 30 52h52c16-12 30-30 30-52 0-40-18-70-56-70z" fill="#8c9692"/><path d="M168 175q32 26 64 0" stroke="#6f7a76" stroke-width="6" fill="none"/><path d="M180 140q20 12 40 0" stroke="#6f7a76" stroke-width="5" fill="none"/><path d="M178 52q22-30 44 0" stroke="#e9c98b" stroke-width="6" fill="none"/></svg>`,
-  craft:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#3a2e22"/><g fill="none" stroke-width="10"><path d="M110 120h180l-20 130H130z" fill="#c69a5a" stroke="none"/><path d="M118 150h164M122 180h156M126 210h148M130 240h140" stroke="#9c7440"/><path d="M150 120v130M190 120v130M230 120v130M270 120v130" stroke="#e1bf80" stroke-width="8"/></g><path d="M140 120q60-80 120 0" stroke="#8a6332" stroke-width="10" fill="none"/></svg>`,
-  frame:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#1d2333"/><rect x="95" y="35" width="210" height="230" rx="6" fill="#8a5a2b"/><rect x="113" y="53" width="174" height="194" fill="#b07a40"/><g fill="none" stroke="#e9c98b" stroke-width="5"><circle cx="200" cy="150" r="56"/><path d="M200 94v112M144 150h112M160 110l80 80M240 110l-80 80"/><circle cx="200" cy="150" r="20"/></g></svg>`,
-  gift:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2a2440"/><circle cx="135" cy="185" r="48" fill="#c25b4a"/><path d="M135 137v96M87 185h96" stroke="#e9c98b" stroke-width="5"/><rect x="200" y="120" width="110" height="110" rx="10" fill="#4f7a6e"/><path d="M255 120v110M200 175h110" stroke="#f4e4c1" stroke-width="8"/><path d="M255 120q-22-30-34-10t34 10q22-30 34-10t-34 10" fill="#f4e4c1"/><rect x="60" y="232" width="280" height="10" rx="5" fill="#3d3560"/></svg>`
+const ICON = {
+  vase:'<path d="M9 3h6M10 3v3c-3 1.5-5 4.5-5 8a7 7 0 0 0 14 0c0-3.5-2-6.5-5-8V3"/>',
+  jar:'<path d="M8 4h8M9 4v2.5C6 8 4.5 10.5 4.5 14c0 4 3 7 7.5 7s7.5-3 7.5-7c0-3.5-1.5-6-4.5-7.5V4"/><path d="M4.8 12c-1.6 0-2.3-2.2-.8-3M19.2 12c1.6 0 2.3-2.2.8-3"/>',
+  donut:'<path d="M12 3c-1 0-1.5.8-1.5 2-4 1-6.5 4.5-6.5 8.5A8 8 0 0 0 12 21a8 8 0 0 0 8-7.5C20 9.5 17.5 6 13.5 5c0-1.2-.5-2-1.5-2z"/><circle cx="12" cy="13.5" r="3"/>',
+  bowl:'<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M9 20h6M8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/>'
 };
 
-/* ---------- render ---------- */
-let lang = "id";
-try {
-  const saved = localStorage.getItem("ml-lang");
-  if (saved) lang = saved;
-} catch(e) {}
-if (!T[lang]) lang = "id";
-
-const wa = msg => `https://wa.me/${TOKO.telepon}?text=${encodeURIComponent(msg)}`;
+/* =====================================================================
+   LOGIC
+   ===================================================================== */
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wa = msg => `https://wa.me/${TOKO.telepon}?text=${encodeURIComponent(msg)}`;
+const fmt = s => s.replace(":", ".");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lang = "id";
+try { const s = localStorage.getItem("ml-lang"); if (s && s in {id:1,en:1}) lang = s; } catch(e) {}
+
+/* jam buka */
+function nowInStore(){
+  try {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-US",{timeZone:TOKO.zonaWaktu,weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+    return { d:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(p.weekday), m:(+p.hour%24)*60 + +p.minute };
+  } catch(e){ const n=new Date(); return { d:n.getDay(), m:n.getHours()*60+n.getMinutes() }; }
+}
+const toMin = s => { const [h,m] = s.split(/[:.]/).map(Number); return h*60 + (m||0); };
+function storeStatus(){
+  const n = nowInStore();
+  const today = TOKO.jam.find(j => j.hari.includes(n.d));
+  const open = !!today && n.m >= toMin(today.buka) && n.m < toMin(today.tutup);
+  return { open, today, idx: TOKO.jam.indexOf(today) };
+}
+
+/* hero title with word reveal */
+function titleHTML(str){
+  let em = false, i = 0;
+  return str.split(" ").map(w => {
+    let start = w.startsWith("*"), end = w.endsWith("*");
+    w = w.replace(/\*/g, "");
+    if (start) em = true;
+    const inner = em ? `<em>${esc(w)}</em>` : esc(w);
+    if (end) em = false;
+    return `<span class="w"><span style="--i:${i++}">${inner}</span></span>`;
+  }).join(" ");
+}
+
+const media = (p, eager) => `<img src="${esc(p.foto)}" alt="" ${eager ? "" : 'loading="lazy"'} decoding="async" onload="this.classList.add('ok')">`;
 
 function render(){
   const t = T[lang];
   document.documentElement.lang = lang;
-  document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = t[el.dataset.t]; });
-  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+  $$("[data-t]").forEach(el => { el.innerHTML = t[el.dataset.t]; });
+  $("#heroTitle").innerHTML = titleHTML(t.heroTitle);
+  $$("#lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+  $("#lang").classList.toggle("en", lang === "en");
 
-  document.querySelectorAll(".js-wa").forEach(a => a.href = wa(t.waMsg));
-  document.querySelectorAll(".js-area").forEach(el => el.textContent = TOKO.area);
-  document.querySelector(".js-hours-short").textContent = TOKO.jamSingkat[lang];
-  document.querySelector(".js-address").textContent = TOKO.alamat;
-  const tel = document.querySelector(".js-tel");
-  tel.textContent = TOKO.teleponTampil; tel.href = "tel:+" + TOKO.telepon;
-  document.querySelector(".js-hours").innerHTML = TOKO.jam.map(j => `<li><span>${esc(j[lang])}</span><b>${esc(j.jam)}</b></li>`).join("");
+  $$(".js-wa").forEach(a => a.href = wa(t.waMsg));
+  $$(".js-area").forEach(el => el.textContent = TOKO.area);
+  $(".js-address").textContent = TOKO.alamat;
+  const tel = $(".js-tel"); tel.textContent = TOKO.teleponTampil; tel.href = "tel:+" + TOKO.telepon;
 
-  document.getElementById("cats").innerHTML = t.cats.map(([ic,h,p]) =>
-    `<div class="cat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#${ic}"/></svg></div><h3>${h}</h3><p>${p}</p></div>`).join("");
+  const st = storeStatus();
+  $(".js-hours").innerHTML = TOKO.jam.map((j,i) => `<li class="${i===st.idx?"today":""}"><span>${esc(j[lang])}</span><b>${fmt(j.buka)} – ${fmt(j.tutup)}</b></li>`).join("");
+  $$(".js-dot").forEach(d => d.classList.toggle("open", st.open));
+  $(".js-status").classList.toggle("open", st.open);
+  $(".js-status-text").textContent = st.open ? t.open : t.closed;
+  $(".js-status-short").textContent = st.open ? t.openUntil(fmt(st.today.tutup)) : t.closedShort;
 
-  document.getElementById("grid").innerHTML = TOKO.galeri.map((p, i) =>
-    `<button class="tile" data-i="${i}" aria-label="${lang === "id" ? "Perbesar foto" : "Enlarge photo"} ${i + 1}">${media(p)}</button>`
-  ).join("");
-  document.querySelector(".lb-close").setAttribute("aria-label", t.close);
+  const words = t.marquee.map(w => `<span>${esc(w)}</span>`).join("");
+  $("#track").innerHTML = words + words + words + words;
+
+  $("#cats").innerHTML = t.cats.map(([ic,h,p],k) =>
+    `<article class="cat" data-r style="--k:${k}"><span class="num">0${k+1}</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[ic]}</svg></div><h3>${h}</h3><p>${p}</p></article>`).join("");
+
+  $("#grid").innerHTML = TOKO.galeri.map((p,i) =>
+    `<button class="tile" data-r="scale" style="--k:${i%3}" data-i="${i}" aria-label="${t.enlarge} ${i+1}"><span class="media">${media(p)}</span><span class="zoom"><svg viewBox="0 0 24 24"><use href="#i-plus"/></svg></span></button>`).join("");
+
+  observeReveal();
+  bindTilt();
 }
 
-const media = p => p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : (ART[p.art] || ART.paint);
+/* reveal on scroll */
+let rio;
+function observeReveal(){
+  if (reduce || !("IntersectionObserver" in window)) { $$("[data-r]").forEach(el => el.classList.add("in")); return; }
+  rio = rio || new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); rio.unobserve(e.target); } }), { rootMargin:"0px 0px -8% 0px", threshold:.12 });
+  $$("[data-r]:not(.in)").forEach(el => rio.observe(el));
+}
 
-/* ---------- lightbox (ketuk foto untuk memperbesar, geser untuk ganti) ---------- */
-const lb = document.getElementById("lb"), lbImg = lb.querySelector(".lb-img");
-let cur = 0, startX = null;
-function openLb(i){ cur = (i + TOKO.galeri.length) % TOKO.galeri.length; lbImg.innerHTML = media(TOKO.galeri[cur]); lb.classList.add("open"); document.body.classList.add("lb-on"); document.body.style.overflow = "hidden"; }
-function closeLb(){ lb.classList.remove("open"); document.body.classList.remove("lb-on"); document.body.style.overflow = ""; }
-document.getElementById("grid").addEventListener("click", e => { const b = e.target.closest(".tile"); if (b) openLb(+b.dataset.i); });
-lb.querySelector(".lb-close").onclick = closeLb;
-lb.querySelector(".lb-prev").onclick = () => openLb(cur - 1);
-lb.querySelector(".lb-next").onclick = () => openLb(cur + 1);
+/* spotlight + tilt on category cards (mouse only) */
+function bindTilt(){
+  if (!matchMedia("(hover:hover) and (pointer:fine)").matches || reduce) return;
+  $$(".cat").forEach(c => {
+    c.addEventListener("pointermove", e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+      c.style.setProperty("--mx", x*100 + "%"); c.style.setProperty("--my", y*100 + "%");
+      c.style.transform = `perspective(800px) rotateX(${(.5-y)*7}deg) rotateY(${(x-.5)*9}deg) translateY(-4px)`;
+    });
+    c.addEventListener("pointerleave", () => { c.style.transform = ""; });
+    c.style.transition = "transform .5s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s, opacity .9s";
+  });
+}
+
+/* sky: stars drawn with box-shadow (3 elements only = very light) */
+(function sky(){
+  const w = innerWidth, h = innerHeight * 1.1, small = w < 720;
+  const gen = n => Array.from({length:n}, () => `${(Math.random()*w)|0}px ${(Math.random()*h*.8)|0}px rgba(255,255,255,${(.35+Math.random()*.6).toFixed(2)})`).join(",");
+  $(".s1").style.boxShadow = gen(small ? 60 : 120);
+  $(".s2").style.boxShadow = gen(small ? 40 : 80);
+  $(".s3").style.boxShadow = gen(small ? 14 : 26);
+  const dust = $("#dust"), n = small ? 10 : 18;
+  for (let i = 0; i < n; i++){
+    const b = document.createElement("b");
+    b.style.cssText = `left:${Math.random()*100}%;--s:${(2+Math.random()*3).toFixed(1)}px;--t:${(10+Math.random()*10).toFixed(1)}s;--d:${(-Math.random()*20).toFixed(1)}s;--x:${((Math.random()-.5)*120)|0}px`;
+    dust.appendChild(b);
+  }
+})();
+
+/* scroll: parallax, progress, nav — one rAF per frame, transforms only */
+const nav = $("#nav"), prog = $("#progress"), moon = $("#moon"), heroIn = $("#heroIn"),
+      h1 = $("#h1"), archWrap = $("#archWrap"), h2 = $("#h2"), h3 = $("#h3"), fab = $("#fab"), tabbar = $("#tabbar");
+let ticking = false;
+function onScroll(){
+  const y = scrollY, vh = innerHeight, max = document.documentElement.scrollHeight - vh;
+  prog.style.transform = `scaleX(${max > 0 ? y/max : 0})`;
+  nav.classList.toggle("solid", y > 40);
+  fab.classList.toggle("show", y > vh * .5);
+  tabbar.classList.toggle("show", y > 60 || innerWidth <= 720);
+  if (!reduce && y < vh * 1.2){
+    moon.style.transform = `translate3d(0,${y*.12}px,0)`;
+    archWrap.style.transform = `translate3d(0,${y*.08}px,0)`;
+    h3.style.transform = `translate3d(0,${y*.18}px,0)`;
+    h2.style.transform = `translate3d(0,${y*.1}px,0)`;
+    heroIn.style.transform = `translate3d(0,${y*.16}px,0)`;
+  }
+  ticking = false;
+}
+addEventListener("scroll", () => { if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, { passive:true });
+addEventListener("resize", () => requestAnimationFrame(onScroll), { passive:true });
+
+/* pause off-screen animations (battery + no lag) */
+if ("IntersectionObserver" in window){
+  const pause = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("off", !e.isIntersecting)));
+  pause.observe($(".hero")); pause.observe($("#marquee"));
+
+  // active tab
+  const tabs = {}; $$(".tabbar [data-sec]").forEach(a => tabs[a.dataset.sec] = a);
+  const sio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ Object.values(tabs).forEach(a => a.classList.remove("on")); tabs[e.target.id]?.classList.add("on"); }
+  }), { rootMargin:"-45% 0px -50% 0px" });
+  ["home","tentang","koleksi","lokasi"].forEach(id => sio.observe(document.getElementById(id)));
+
+  // lazy map
+  const mio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; mio.disconnect();
+    const f = document.createElement("iframe");
+    f.title = "Peta lokasi Moonlight Art Shop"; f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+    f.src = `https://www.google.com/maps?q=${encodeURIComponent(TOKO.cariDiMaps)}&output=embed`;
+    f.style.opacity = 0; f.style.transition = "opacity .8s";
+    f.onload = () => { f.style.opacity = 1; };
+    $("#map").appendChild(f);
+  }), { rootMargin:"300px" });
+  mio.observe($("#map"));
+}
+$(".js-maps").href = TOKO.linkMaps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(TOKO.cariDiMaps)}`;
+
+/* lightbox */
+const lb = $("#lb"), stage = $("#lbStage"), dots = $("#lbDots"), count = $("#lbCount");
+let cur = 0, sx = null, sy = null;
+function show(i, dir){
+  const n = TOKO.galeri.length; cur = (i + n) % n;
+  stage.innerHTML = media(TOKO.galeri[cur], true);
+  const im = stage.querySelector("img"); if (im) im.classList.add("ok");
+  if (dir){ stage.style.setProperty("--dir", dir > 0 ? "40px" : "-40px"); stage.classList.remove("swap"); void stage.offsetWidth; stage.classList.add("swap"); }
+  dots.innerHTML = TOKO.galeri.map((_,k) => `<i class="${k===cur?"on":""}"></i>`).join("");
+  count.textContent = `${cur+1} / ${n}`;
+}
+function openLb(i){ show(i); lb.classList.add("open"); document.body.classList.add("locked"); }
+function closeLb(){ lb.classList.remove("open"); document.body.classList.remove("locked"); }
+$("#grid").addEventListener("click", e => { const b = e.target.closest(".tile"); if (b) openLb(+b.dataset.i); });
+$(".lb-close").onclick = closeLb;
+$(".lb-prev").onclick = () => show(cur-1, -1);
+$(".lb-next").onclick = () => show(cur+1, 1);
 lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
-lb.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, {passive:true});
-lb.addEventListener("touchend", e => { if (startX === null) return; const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) openLb(cur + (dx < 0 ? 1 : -1)); startX = null; });
-document.addEventListener("keydown", e => { if (!lb.classList.contains("open")) return; if (e.key === "Escape") closeLb(); if (e.key === "ArrowRight") openLb(cur + 1); if (e.key === "ArrowLeft") openLb(cur - 1); });
+lb.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive:true });
+lb.addEventListener("touchend", e => {
+  if (sx === null) return;
+  const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+  else if (dy > 90) closeLb();
+  sx = sy = null;
+});
+addEventListener("keydown", e => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowRight") show(cur+1, 1);
+  if (e.key === "ArrowLeft") show(cur-1, -1);
+});
 
-// peta
-const q = encodeURIComponent(TOKO.cariDiMaps);
-document.querySelector(".js-embed").src = `https://www.google.com/maps?q=${q}&output=embed`;
-document.querySelector(".js-maps").href = TOKO.linkMaps || `https://www.google.com/maps/search/?api=1&query=${q}`;
-
-// bintang
-const stars = document.getElementById("stars");
-for (let i = 0; i < 70; i++) {
-  const s = document.createElement("i");
-  s.style.left = Math.random()*100 + "%"; s.style.top = Math.random()*100 + "%";
-  s.style.animationDelay = (Math.random()*4).toFixed(2) + "s";
-  if (Math.random() > .85) { s.style.width = s.style.height = "3px"; }
-  stars.appendChild(s);
-}
-
-document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
-  lang = b.dataset.lang; try { localStorage.setItem("ml-lang", lang); } catch(e) {} render();
+/* language */
+$$("#lang button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.lang === lang) return;
+  lang = b.dataset.lang; try { localStorage.setItem("ml-lang", lang); } catch(e) {}
+  document.body.classList.remove("ready"); render();
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("ready")));
 }));
-document.getElementById("yr").textContent = new Date().getFullYear();
-render();
+
+/* boot */
+$("#yr").textContent = new Date().getFullYear();
+render(); onScroll();
+setInterval(() => { const st = storeStatus(), t = T[lang];
+  $$(".js-dot").forEach(d => d.classList.toggle("open", st.open)); $(".js-status").classList.toggle("open", st.open);
+  $(".js-status-text").textContent = st.open ? t.open : t.closed;
+  $(".js-status-short").textContent = st.open ? t.openUntil(fmt(st.today.tutup)) : t.closedShort; }, 60000);
+
+let booted = false;
+function boot(){
+  if (booted) return; booted = true;
+  $("#loader").classList.add("done");
+  document.body.classList.remove("locked");
+  requestAnimationFrame(() => document.body.classList.add("ready"));
+  onScroll();
+}
+if (reduce) boot();
+else { addEventListener("load", () => setTimeout(boot, 450)); setTimeout(boot, 2200); }
 </script>
 </body>
 </html>
