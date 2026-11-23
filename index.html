@@ -34,6 +34,10 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body.locked{overflow:hidden}
+html{-webkit-tap-highlight-color:transparent}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+::selection{background:transparent}
+img{-webkit-user-drag:none;user-drag:none;pointer-events:none}
 img{max-width:100%;display:block}
 a{color:inherit;-webkit-tap-highlight-color:transparent}
 button{font:inherit;-webkit-tap-highlight-color:transparent}
@@ -274,7 +278,14 @@ section{position:relative;padding:110px 0}
 @keyframes bob{50%{transform:translateY(-8px)}}
 .map-chip{position:absolute;z-index:2;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:99px;background:var(--paper);color:var(--ink);font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
 .map-chip svg{width:17px;height:17px}
-.lb-wa{position:absolute;left:50%;bottom:78px;transform:translateX(-50%);padding:12px 20px;font-size:.92rem}
+.lb-actions{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;padding:0 16px}
+.lb-actions .btn{padding:13px 20px;font-size:.92rem}
+.btn-share{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+@media (hover:hover){.btn-share:hover{background:rgba(255,255,255,.18)}}
+.lb-more{width:48px;height:48px;padding:0!important;flex:none}
+.lb-more svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-b));z-index:90;transform:translate(-50%,20px);opacity:0;background:var(--paper);color:var(--ink);font-weight:700;font-size:.88rem;padding:11px 18px;border-radius:99px;box-shadow:0 14px 30px -10px rgba(0,0,0,.6);transition:opacity .3s,transform .4s var(--ease-out);pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* footer */
 footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;overflow:hidden;position:relative}
@@ -294,14 +305,14 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
 .tabbar{display:none}
 
 /* lightbox */
-.lb{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:70px 16px 96px;background:rgba(10,8,6,.96);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
+.lb{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:70px 16px 150px;background:rgba(10,8,6,.96);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
 .lb.open{opacity:1;visibility:visible}
 .lb-stage{width:min(940px,100%);max-height:100%;border-radius:18px;overflow:hidden;transform:scale(.92);transition:transform .5s var(--ease-out);box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
 .lb.open .lb-stage{transform:none}
 .lb-stage.swap{animation:swap .45s var(--ease-out)}
 @keyframes swap{from{opacity:.2;transform:translateX(var(--dir,30px)) scale(.98)}}
 .lb-stage{background:transparent;box-shadow:none;display:flex;justify-content:center}
-.lb-stage img{width:auto;max-width:100%;height:auto;max-height:76vh;object-fit:contain;display:block;margin:auto;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.lb-stage img{width:auto;max-width:100%;height:auto;max-height:calc(100vh - 240px);object-fit:contain;display:block;margin:auto;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
 .lb-btn{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.12);width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .lb-btn:hover{background:rgba(255,255,255,.2)}
 .lb-btn svg{width:22px;height:22px}
@@ -309,7 +320,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
 .lb-prev{left:18px;top:50%;margin-top:-24px}
 .lb-next{right:18px;top:50%;margin-top:-24px}
 .lb-count{position:absolute;top:28px;left:50%;transform:translateX(-50%);color:#c9cfdc;font-size:.85rem;letter-spacing:.14em}
-.lb-dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.lb-dots{position:absolute;bottom:96px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
 .lb-dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.3);transition:width .35s var(--ease-out),background .3s}
 .lb-dots i.on{width:22px;background:var(--gold)}
 
@@ -367,22 +378,24 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   .step{padding:18px 16px;gap:14px}
   .step h4{font-size:1.3rem}
   .step p{font-size:.88rem}
-  .lb-wa{bottom:96px}
   footer{padding:56px 0 calc(120px + var(--safe-b))}
   .big{margin-bottom:24px}
   .foot{flex-direction:column;align-items:flex-start}
   .fab{display:none}
-  .lb{padding:64px 0 110px}
-  .lb-stage{border-radius:0}
-  .lb-prev,.lb-next{top:auto;bottom:24px;margin:0}
-  .lb-prev{left:18px}.lb-next{right:18px}
-  .lb-dots{bottom:44px}
-  .lb-wa{bottom:auto;top:22px;left:18px;transform:none;padding:10px 16px;font-size:.85rem}
-  .lb-count{left:auto;right:84px;transform:none}
+  .lb{padding:64px 0 calc(170px + var(--safe-b))}
+  .lb-stage img{max-height:calc(100vh - 250px);border-radius:0}
+  .lb-prev,.lb-next{width:40px;height:40px;margin-top:-20px;background:rgba(0,0,0,.4)}
+  .lb-prev{left:10px}.lb-next{right:10px}
+  .lb-actions{bottom:calc(20px + var(--safe-b));gap:8px}
+  .lb-actions .lb-order{flex:1 1 100%}
+  .lb-actions .lb-share{flex:1}
+  .lb-dots{bottom:calc(140px + var(--safe-b))}
+  .toast{bottom:calc(190px + var(--safe-b))}
 
   /* app-style bottom bar */
   .tabbar{display:flex;position:fixed;z-index:45;left:12px;right:12px;bottom:calc(12px + var(--safe-b));height:66px;border-radius:22px;background:rgba(20,16,13,.94);border:1px solid rgba(233,201,139,.16);box-shadow:0 18px 40px -14px rgba(0,0,0,.7);align-items:center;justify-content:space-around;padding:0 6px;transform:translateY(140%);transition:transform .6s var(--ease-out)}
   .tabbar.show{transform:none}
+  body.locked .tabbar{transform:translateY(140%)}
   .tabbar a{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:#8f98ad;font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:8px 0;transition:color .3s}
   .tabbar a svg{width:22px;height:22px;transition:transform .4s var(--ease-out)}
   .tabbar a.on{color:var(--gold)}
@@ -561,8 +574,13 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   <div class="lb-stage" id="lbStage"></div>
   <button class="lb-btn lb-next" aria-label="Berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <div class="lb-dots" id="lbDots"></div>
-  <a class="btn btn-wa lb-wa" id="lbWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="lbAsk"></span></a>
+  <div class="lb-actions">
+    <a class="btn btn-wa lb-order" id="lbWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="lbAsk"></span></a>
+    <a class="btn btn-share lb-share" id="lbShare" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="lbShare"></span></a>
+    <button class="btn btn-share lb-more" id="lbMore" hidden aria-label="Bagikan ke aplikasi lain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-share"/></svg></button>
+  </div>
 </div>
+<div class="toast" id="toast" role="status"></div>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -571,6 +589,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
   <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
   <symbol id="i-studio" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M10 4H4v6M14 20h6v-6M4 4l6 6M20 20l-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
@@ -593,6 +612,7 @@ const TOKO = {
   area: "Bali",
   alamat: "Jln. Pratu Made Rambug, Gang Damai Asri, Batubulan, Gianyar",
   linkMaps: "https://maps.app.goo.gl/GZft25eFLbXtBnnG9",
+  linkWeb: "",   // (opsional) alamat web, mis. "https://moonlight.vercel.app". Kosong = otomatis
   cariDiMaps: "Moonlight Art shop, Jl. Pratu Made Rambug No.57, Batubulan, Sukawati, Gianyar Regency, Bali 80237",
   galeri: [
     { foto: "images/produk-1.jpg" },
@@ -615,7 +635,7 @@ const T = {
     heroEyebrow:"Keramik · Gerabah · Dekorasi",
     heroTitle:"Karya *tanah liat* untuk setiap sudut rumah",
     heroLead:"Vas keramik, guci gerabah, dan dekorasi interior buatan tangan, dari vas mungil untuk rak sampai guci besar untuk sudut ruangan. Pesan langsung lewat WhatsApp.",
-    ctaChat:"Pesan via WhatsApp", ctaMap:"Cara pesan", ctaDirections:"Lihat lokasi Art Shop", ctaOrder:"Chat sekarang", chipOrder:"Terima pesanan", lbAsk:"Pesan yang seperti ini",
+    ctaChat:"Pesan via WhatsApp", ctaMap:"Cara pesan", ctaDirections:"Lihat lokasi Art Shop", ctaOrder:"Chat sekarang", chipOrder:"Terima pesanan", lbAsk:"Pesan yang seperti ini", lbShare:"Bagikan ke WhatsApp", copied:"Link disalin",
     badgeT:"Buatan tangan", badgeS:"Keramik & gerabah",
     marquee:["Vas Keramik","Gerabah","Guci Besar","Vas Dekoratif","Topeng Dinding","Lampu Keramik","Mangkuk","Dekorasi Interior"],
     aboutEyebrow:"Tentang kami", aboutTitle:"Apa saja yang <em>kami jual</em>",
@@ -631,6 +651,7 @@ const T = {
       ["Pilih produk","Kirim foto dari galeri ini atau ceritakan bentuk, warna, dan ukuran yang dicari."],
       ["Konfirmasi pesanan","Harga, ketersediaan, dan pengiriman dibahas langsung lewat chat."]
     ],
+    shareMsg:u=>`Lihat dekorasi keramik cantik dari Moonlight Art Shop ✨\nBuka link ini untuk lihat fotonya:\n${u}`,
     lbMsg:n=>`Halo Moonlight Art Shop, saya tertarik dengan produk seperti foto nomor ${n} di web. Boleh info lebih lanjut?`,
     waMsg:"Halo Moonlight Art Shop, saya mau pesan / tanya produk.",
     enlarge:"Perbesar foto",
@@ -647,7 +668,7 @@ const T = {
     heroEyebrow:"Ceramics · Pottery · Décor",
     heroTitle:"Handmade *clay pieces* for every corner",
     heroLead:"Ceramic vases, earthenware jars and handmade interior décor, from small shelf vases to large floor jars. Order directly on WhatsApp.",
-    ctaChat:"Order on WhatsApp", ctaMap:"How to order", ctaDirections:"See Art Shop location", ctaOrder:"Chat now", chipOrder:"Taking orders", lbAsk:"Order one like this",
+    ctaChat:"Order on WhatsApp", ctaMap:"How to order", ctaDirections:"See Art Shop location", ctaOrder:"Chat now", chipOrder:"Taking orders", lbAsk:"Order one like this", lbShare:"Share on WhatsApp", copied:"Link copied",
     badgeT:"Handmade", badgeS:"Ceramics & pottery",
     marquee:["Ceramic Vases","Earthenware","Large Jars","Sculptural Vases","Wall Masks","Ceramic Lamps","Bowls","Interior Décor"],
     aboutEyebrow:"About us", aboutTitle:"What <em>we sell</em>",
@@ -663,6 +684,7 @@ const T = {
       ["Choose a piece","Send a photo from this gallery or describe the shape, colour and size you want."],
       ["Confirm your order","Price, availability and delivery are discussed directly in the chat."]
     ],
+    shareMsg:u=>`Check out this beautiful ceramic décor from Moonlight Art Shop ✨\nOpen this link to see the photo:\n${u}`,
     lbMsg:n=>`Hi Moonlight Art Shop, I'm interested in a piece like photo number ${n} on your website. Could you tell me more?`,
     waMsg:"Hi Moonlight Art Shop, I'd like to order / ask about a product.",
     enlarge:"Enlarge photo",
@@ -722,7 +744,7 @@ function render(){
   $(".js-studio").textContent = t.studio(TOKO.area);
   $(".js-address").textContent = TOKO.alamat;
   $("#steps").innerHTML = t.steps.map(([h,p],k) => `<li class="step" style="--k:${k}"><span class="n">${k+1}</span><div><h4>${h}</h4><p>${p}</p></div></li>`).join("");
-  if (lb.classList.contains("open")) $("#lbWa").href = wa(t.lbMsg(cur+1));
+  if (lb.classList.contains("open")) show(cur);
 
   const words = t.marquee.map(w => `<span>${esc(w)}</span>`).join("");
   $("#track").innerHTML = words + words + words + words;
@@ -833,7 +855,16 @@ function show(i, dir){
   dots.innerHTML = TOKO.galeri.map((_,k) => `<i class="${k===cur?"on":""}"></i>`).join("");
   count.textContent = `${cur+1} / ${n}`;
   $("#lbWa").href = wa(T[lang].lbMsg(cur+1));
+  $("#lbShare").href = "https://wa.me/?text=" + encodeURIComponent(T[lang].shareMsg(shareUrl(cur)));
 }
+const shareUrl = i => (TOKO.linkWeb || location.href.split("#")[0]) + "#foto-" + (i+1);
+const toast = msg => { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); };
+if (navigator.share) $("#lbMore").hidden = false;
+$("#lbMore").addEventListener("click", async () => {
+  const url = shareUrl(cur);
+  try { await navigator.share({ title:"Moonlight Art Shop", text:T[lang].shareMsg(url).replace(url,"").trim(), url }); }
+  catch(e){ if (e && e.name !== "AbortError"){ try { await navigator.clipboard.writeText(url); toast(T[lang].copied); } catch(_){} } }
+});
 function openLb(i){ show(i); lb.classList.add("open"); document.body.classList.add("locked"); }
 function closeLb(){ lb.classList.remove("open"); document.body.classList.remove("locked"); }
 $("#grid").addEventListener("click", e => { const b = e.target.closest(".tile"); if (b) openLb(+b.dataset.i); });
@@ -874,7 +905,18 @@ function boot(){
   document.body.classList.remove("locked");
   requestAnimationFrame(() => document.body.classList.add("ready"));
   onScroll();
+  openFromHash();
 }
+function openFromHash(){
+  const m = location.hash.match(/^#foto-(\d+)$/);
+  if (!m) return;
+  const i = Math.min(Math.max(+m[1]-1, 0), TOKO.galeri.length-1);
+  document.getElementById("koleksi").scrollIntoView();
+  openLb(i);
+}
+addEventListener("hashchange", () => { if (booted) openFromHash(); });
+addEventListener("contextmenu", e => { if (e.target.closest(".tile, .lb, .arch, .bento, img")) e.preventDefault(); });
+addEventListener("dragstart", e => { if (e.target.closest("img, .tile")) e.preventDefault(); });
 if (reduce) boot();
 else { addEventListener("load", () => setTimeout(boot, 450)); setTimeout(boot, 2200); }
 </script>
