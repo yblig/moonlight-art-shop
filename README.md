@@ -16,6 +16,6 @@ Semua data ada di objek `TOKO` di bagian bawah `index.html`:
 | `linkMaps` | Link "Bagikan" dari Google Maps (`https://maps.app.goo.gl/...`) |
 | `cariDiMaps` | Koordinat (`-8.5069,115.2625`) atau nama toko persis seperti di Google Maps, dipakai untuk peta di halaman |
 | `jam`, `jamSingkat` | Jam buka |
-| `produk` | Daftar produk. Untuk pakai foto asli, taruh file di folder `images/` lalu isi `foto: "images/nama-file.jpg"` |
+| `galeri` | Foto contoh produk (tanpa nama/stok). Taruh foto di folder `images/` lalu isi `foto: "images/produk-1.jpg"`. Tambah/kurangi baris untuk jumlah foto. |
 
 Simpan, commit, push: GitHub Pages akan memperbarui web dalam 1–2 menit.

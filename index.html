@@ -37,7 +37,7 @@ h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-hei
 .top .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
 .brand{display:flex;align-items:center;gap:10px;color:var(--moon-soft);text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600}
 .brand svg{width:30px;height:30px}
-.lang{display:flex;border:1px solid rgba(233,201,139,.4);border-radius:99px;overflow:hidden}
+.lang{display:flex;border:1px solid rgba(233,201,139,.4);border-radius:99px;overflow:hidden;background:rgba(15,22,38,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .lang button{background:none;border:0;color:var(--moon-soft);font:inherit;font-size:.78rem;font-weight:700;padding:6px 12px;cursor:pointer;letter-spacing:.06em}
 .lang button.on{background:var(--moon);color:var(--night)}
 
@@ -88,17 +88,21 @@ section{padding:84px 0}
 
 /* products */
 .products{background:var(--paper);border-block:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
-.card{border-radius:var(--radius);overflow:hidden;background:var(--cream);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,22,38,.4)}
-.card .ph{aspect-ratio:4/3;background:var(--night-3);position:relative;overflow:hidden}
-.card .ph img,.card .ph svg{width:100%;height:100%;object-fit:cover}
-.card .tag{position:absolute;left:12px;top:12px;background:rgba(15,22,38,.78);color:var(--moon-soft);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px;backdrop-filter:blur(4px)}
-.card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card h3{font-size:1.4rem}
-.card p{color:var(--muted);font-size:.92rem;flex:1}
-.card .ask{margin-top:10px;font-weight:700;font-size:.9rem;color:var(--wa);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-.card .ask svg{width:16px;height:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{display:block;width:100%;padding:0;border:0;cursor:zoom-in;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--night-3);transition:transform .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,22,38,.45)}
+.tile img,.tile svg{width:100%;height:100%;object-fit:cover;display:block}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(10,14,24,.97);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:60px 16px}
+.lb.open{display:flex}
+body.lb-on .fab{display:none}
+.lb-img{width:min(900px,100%);max-height:100%;border-radius:14px;overflow:hidden}
+.lb-img img,.lb-img svg{width:100%;height:auto;max-height:80vh;object-fit:contain;display:block;margin:auto}
+.lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb-close{top:14px;right:14px}
+.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+.lb-next{right:12px;top:50%;transform:translateY(-50%)}
 
 /* visit */
 .visit-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:stretch}
@@ -132,13 +136,35 @@ footer .brand{font-size:1.2rem}
   .moon{top:70px;right:-30px;opacity:.9}
   section{padding:64px 0}
 }
+@media (max-width:640px){
+  .wrap{width:calc(100% - 32px)}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .tile{border-radius:14px}
+  .cats{grid-template-columns:1fr 1fr;gap:10px}
+  .cat{padding:16px;border-radius:14px}
+  .cat .ic{width:38px;height:38px;border-radius:10px;margin-bottom:12px}
+  .cat .ic svg{width:20px;height:20px}
+  .cat h3{font-size:1.2rem}
+  .cat p{font-size:.84rem;line-height:1.45}
+  .head{margin-bottom:26px}
+  .info{padding:22px}
+  .map,.map iframe{min-height:300px}
+  .lb-prev,.lb-next{top:auto!important;bottom:18px;transform:none!important}
+  .lb-prev{left:calc(50% - 56px)!important}
+  .lb-next{right:calc(50% - 56px)!important}
+}
 @media (max-width:520px){
-  .cta .btn{flex:1;justify-content:center}
-  .grid{grid-template-columns:1fr 1fr;gap:12px}
-  .card .body{padding:12px 12px 14px}
-  .card h3{font-size:1.15rem}
-  .card p{font-size:.84rem}
-  .card .tag{font-size:.62rem;padding:4px 8px;left:8px;top:8px}
+  .hero{padding:96px 0 56px}
+  .moon{width:150px;top:-36px;right:-46px}
+  .hero h1{margin-top:10px;max-width:none;font-size:clamp(2.4rem,11vw,3rem)}
+  .moon{opacity:.75}
+  .cta{margin-top:26px}
+  .cta .btn{flex:1 1 100%;justify-content:center;padding:15px 16px;white-space:nowrap}
+  .quick{flex-direction:column;gap:8px;margin-top:26px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:360px){
+  .cats{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -165,7 +191,7 @@ footer .brand{font-size:1.2rem}
   </div>
 </header>
 
-<section class="hero" style="padding-top:120px">
+<section class="hero">
   <div class="stars" id="stars"></div>
   <div class="moon" aria-hidden="true"></div>
   <div class="wrap">
@@ -243,6 +269,13 @@ footer .brand{font-size:1.2rem}
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="lb-close" aria-label="Tutup">&times;</button>
+  <button class="lb-prev" aria-label="Sebelumnya">&#8249;</button>
+  <div class="lb-img"></div>
+  <button class="lb-next" aria-label="Berikutnya">&#8250;</button>
+</div>
+
 <a class="fab js-wa" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
 
 <!-- icon sprite -->
@@ -280,25 +313,15 @@ const TOKO = {
     { id: "Minggu",        en: "Sunday",    jam: "10.00 – 20.00" }
   ],
   jamSingkat: { id: "Buka setiap hari · 09.00 – 21.00", en: "Open daily · 9 AM – 9 PM" },
-  produk: [
-    { foto: "", art: "paint",  kat: {id:"Lukisan",en:"Painting"},
-      nama: {id:"Lukisan Kanvas",en:"Canvas Paintings"},
-      desk: {id:"Pemandangan, abstrak, dan motif tradisional dalam berbagai ukuran.",en:"Landscapes, abstracts and traditional motifs in many sizes."} },
-    { foto: "", art: "mask",   kat: {id:"Ukiran",en:"Carving"},
-      nama: {id:"Topeng Ukir Kayu",en:"Carved Wooden Masks"},
-      desk: {id:"Topeng ukiran tangan, cocok untuk hiasan dinding.",en:"Hand-carved masks, perfect as wall décor."} },
-    { foto: "", art: "statue", kat: {id:"Patung",en:"Sculpture"},
-      nama: {id:"Patung Kayu & Batu",en:"Wood & Stone Statues"},
-      desk: {id:"Patung dekoratif dari ukuran meja sampai ukuran besar.",en:"Decorative statues, from tabletop to large pieces."} },
-    { foto: "", art: "craft",  kat: {id:"Kerajinan",en:"Handicraft"},
-      nama: {id:"Kerajinan Tangan",en:"Handicrafts"},
-      desk: {id:"Anyaman, gantungan, dan pernak-pernik buatan pengrajin lokal.",en:"Weaving, hangings and trinkets by local artisans."} },
-    { foto: "", art: "frame",  kat: {id:"Dekorasi",en:"Décor"},
-      nama: {id:"Hiasan Dinding",en:"Wall Décor"},
-      desk: {id:"Panel ukir, bingkai, dan dekorasi untuk rumah atau villa.",en:"Carved panels, frames and décor for home or villa."} },
-    { foto: "", art: "gift",   kat: {id:"Oleh-oleh",en:"Souvenir"},
-      nama: {id:"Souvenir & Oleh-oleh",en:"Souvenirs & Gifts"},
-      desk: {id:"Pilihan kecil yang pas dibawa pulang atau untuk hadiah.",en:"Small pieces that are easy to take home or give."} }
+  // Contoh produk: cukup foto saja. Isi foto: "images/produk-1.jpg" dst.
+  // Kalau foto dikosongkan, dipakai ilustrasi bawaan (art).
+  galeri: [
+    { foto: "", art: "paint"  },
+    { foto: "", art: "mask"   },
+    { foto: "", art: "statue" },
+    { foto: "", art: "craft"  },
+    { foto: "", art: "frame"  },
+    { foto: "", art: "gift"   }
   ]
 };
 
@@ -312,12 +335,11 @@ const T = {
     aboutEyebrow: "Tentang kami", aboutTitle: "Apa saja yang kami jual",
     aboutText: "Kami mengumpulkan karya seniman dan pengrajin lokal, dari hiasan kecil untuk oleh-oleh sampai karya besar untuk rumah, kantor, atau villa.",
     prodEyebrow: "Contoh produk", prodTitle: "Sebagian koleksi kami",
-    prodText: "Koleksi di toko selalu berganti. Tanyakan stok, ukuran, atau harga lewat WhatsApp.",
-    askThis: "Tanya produk ini",
+    prodText: "Beberapa contoh karya yang bisa Anda temukan di toko kami.",
+    close: "Tutup",
     visitEyebrow: "Kunjungi kami", visitTitle: "Alamat & kontak",
     lblAddress: "Alamat", lblPhone: "Telepon / WhatsApp", lblHours: "Jam buka",
     waMsg: "Halo Moonlight Art Shop, saya mau tanya-tanya.",
-    waAsk: p => `Halo Moonlight Art Shop, saya mau tanya soal ${p}.`,
     cats: [
       ["i-brush","Lukisan","Lukisan kanvas dengan berbagai gaya: pemandangan, abstrak, hingga motif tradisional."],
       ["i-carve","Ukiran Kayu","Topeng, panel, dan hiasan ukir yang dikerjakan dengan tangan."],
@@ -333,12 +355,11 @@ const T = {
     aboutEyebrow: "About us", aboutTitle: "What we sell",
     aboutText: "We bring together work by local artists and artisans, from small souvenirs to statement pieces for your home, office or villa.",
     prodEyebrow: "Featured products", prodTitle: "A few of our pieces",
-    prodText: "Our collection changes often. Ask about stock, sizes or prices on WhatsApp.",
-    askThis: "Ask about this",
+    prodText: "A few examples of what you'll find in our shop.",
+    close: "Close",
     visitEyebrow: "Visit us", visitTitle: "Address & contact",
     lblAddress: "Address", lblPhone: "Phone / WhatsApp", lblHours: "Opening hours",
     waMsg: "Hi Moonlight Art Shop, I have a question.",
-    waAsk: p => `Hi Moonlight Art Shop, I'd like to ask about ${p}.`,
     cats: [
       ["i-brush","Paintings","Canvas paintings in many styles: landscapes, abstracts and traditional motifs."],
       ["i-carve","Wood Carvings","Masks, panels and ornaments, carved by hand."],
@@ -386,13 +407,27 @@ function render(){
   document.getElementById("cats").innerHTML = t.cats.map(([ic,h,p]) =>
     `<div class="cat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#${ic}"/></svg></div><h3>${h}</h3><p>${p}</p></div>`).join("");
 
-  document.getElementById("grid").innerHTML = TOKO.produk.map(p => {
-    const media = p.foto ? `<img src="${esc(p.foto)}" alt="${esc(p.nama[lang])}" loading="lazy">` : (ART[p.art] || ART.paint);
-    return `<article class="card"><div class="ph">${media}<span class="tag">${esc(p.kat[lang])}</span></div>
-      <div class="body"><h3>${esc(p.nama[lang])}</h3><p>${esc(p.desk[lang])}</p>
-      <a class="ask" href="${wa(t.waAsk(p.nama[lang]))}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>${t.askThis}</a></div></article>`;
-  }).join("");
+  document.getElementById("grid").innerHTML = TOKO.galeri.map((p, i) =>
+    `<button class="tile" data-i="${i}" aria-label="${lang === "id" ? "Perbesar foto" : "Enlarge photo"} ${i + 1}">${media(p)}</button>`
+  ).join("");
+  document.querySelector(".lb-close").setAttribute("aria-label", t.close);
 }
+
+const media = p => p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : (ART[p.art] || ART.paint);
+
+/* ---------- lightbox (ketuk foto untuk memperbesar, geser untuk ganti) ---------- */
+const lb = document.getElementById("lb"), lbImg = lb.querySelector(".lb-img");
+let cur = 0, startX = null;
+function openLb(i){ cur = (i + TOKO.galeri.length) % TOKO.galeri.length; lbImg.innerHTML = media(TOKO.galeri[cur]); lb.classList.add("open"); document.body.classList.add("lb-on"); document.body.style.overflow = "hidden"; }
+function closeLb(){ lb.classList.remove("open"); document.body.classList.remove("lb-on"); document.body.style.overflow = ""; }
+document.getElementById("grid").addEventListener("click", e => { const b = e.target.closest(".tile"); if (b) openLb(+b.dataset.i); });
+lb.querySelector(".lb-close").onclick = closeLb;
+lb.querySelector(".lb-prev").onclick = () => openLb(cur - 1);
+lb.querySelector(".lb-next").onclick = () => openLb(cur + 1);
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+lb.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, {passive:true});
+lb.addEventListener("touchend", e => { if (startX === null) return; const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) openLb(cur + (dx < 0 ? 1 : -1)); startX = null; });
+document.addEventListener("keydown", e => { if (!lb.classList.contains("open")) return; if (e.key === "Escape") closeLb(); if (e.key === "ArrowRight") openLb(cur + 1); if (e.key === "ArrowLeft") openLb(cur - 1); });
 
 // peta
 const q = encodeURIComponent(TOKO.cariDiMaps);
