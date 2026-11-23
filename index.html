@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Moonlight Art Shop</title>
-<meta name="description" content="Moonlight Art Shop: vas keramik, gerabah, guci, dan dekorasi interior buatan tangan. Lihat alamat, peta, dan nomor WhatsApp kami.">
+<meta name="description" content="Moonlight Art Shop: vas keramik, gerabah, guci, dan dekorasi interior buatan tangan. Dibuat di studio kami di Bali, pesan langsung lewat WhatsApp.">
 <meta property="og:title" content="Moonlight Art Shop">
-<meta property="og:description" content="Vas keramik, gerabah & dekorasi interior buatan tangan. Klik untuk lihat alamat, peta, dan kontak.">
+<meta property="og:description" content="Vas keramik, gerabah & dekorasi interior buatan tangan dari Bali. Pesan langsung lewat WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://yblig.github.io/moonlight-art-shop/images/og-cover.jpg">
 <meta property="og:url" content="https://yblig.github.io/moonlight-art-shop/">
@@ -147,6 +147,7 @@ section.hero{padding:0}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:99px;font-weight:700;text-decoration:none;font-size:.98rem;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;white-space:nowrap}
 .btn:active{transform:scale(.97)}
+.btn[hidden]{display:none}
 .btn svg{width:20px;height:20px;flex:none}
 .btn-wa{background:linear-gradient(135deg,var(--wa-2),var(--wa));color:#fff;box-shadow:0 12px 30px -10px rgba(31,168,85,.7)}
 .btn-wa::after{content:"";position:absolute;top:0;left:0;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:translateX(-120%) skewX(-20deg);animation:shine 4.5s 2.5s ease-in-out infinite}
@@ -253,15 +254,27 @@ section{position:relative;padding:110px 0}
 .hours li.today{color:var(--gold)}
 .info .cta{margin-top:auto}
 .info .cta .btn{flex:1}
-.map{position:relative;border-radius:var(--r);overflow:hidden;min-height:420px;background:var(--n3);border:1px solid rgba(233,201,139,.18)}
-.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
-.map .ph{position:absolute;inset:0;display:grid;place-items:center;background:
-  repeating-linear-gradient(0deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),
-  repeating-linear-gradient(90deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),var(--n2)}
+.steps{position:relative;list-style:none;display:flex;flex-direction:column;gap:14px;counter-reset:s}
+.steps::before{content:"";position:absolute;left:43px;top:44px;bottom:44px;width:1.5px;background:linear-gradient(var(--gold),rgba(233,201,139,.1));transform-origin:top;transform:scaleY(0);transition:transform 1.4s var(--ease-out) .5s}
+.steps.in::before{transform:none}
+.step{position:relative;display:flex;gap:18px;align-items:flex-start;padding:22px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(233,201,139,.14);opacity:0;transform:translateX(24px);transition:opacity .7s var(--ease),transform .9s var(--ease-out),background .3s;transition-delay:calc(var(--k)*160ms + .3s)}
+.steps.in .step{opacity:1;transform:none}
+@media (hover:hover){.step:hover{background:rgba(255,255,255,.07)}}
+.step .n{position:relative;z-index:1;width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-weight:700;font-size:1.45rem;color:var(--n1);background:linear-gradient(145deg,var(--gold-2),var(--gold));box-shadow:0 0 0 6px var(--n1),0 8px 20px -6px rgba(233,201,139,.5)}
+.step h4{font-family:"Cormorant Garamond",serif;font-size:1.45rem;font-weight:600;color:var(--gold-2);line-height:1.15;margin:4px 0 4px}
+.step p{color:#a99f94;font-size:.94rem}
+.row a.js-phone{font-size:1.15rem;font-weight:700}
+.addr{display:block;color:#a99f94;font-size:.9rem;margin-top:2px;line-height:1.5}
+.map{position:relative;margin-top:22px;border-radius:var(--r);overflow:hidden;height:420px;background:var(--n3);border:1px solid rgba(233,201,139,.18)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map .ph{position:absolute;inset:0;display:grid;place-items:center;background:repeating-linear-gradient(0deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),repeating-linear-gradient(90deg,transparent 0 38px,rgba(233,201,139,.06) 38px 39px),var(--n2)}
 .pin{position:relative;width:54px;height:54px}
 .pin svg{width:54px;height:54px;color:var(--gold);animation:bob 2.2s ease-in-out infinite;position:relative;z-index:1}
 .pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:40px;height:12px;margin-left:-20px;border-radius:50%;border:2px solid var(--gold);animation:ping 2.2s ease-out infinite}
 @keyframes bob{50%{transform:translateY(-8px)}}
+.map-chip{position:absolute;z-index:2;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:99px;background:var(--paper);color:var(--ink);font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
+.map-chip svg{width:17px;height:17px}
+.lb-wa{position:absolute;left:50%;bottom:78px;transform:translateX(-50%);padding:12px 20px;font-size:.92rem}
 
 /* footer */
 footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;overflow:hidden;position:relative}
@@ -348,7 +361,13 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   .tile{border-radius:16px}
   .info{padding:24px 20px}
   .info h3{font-size:1.7rem}
-  .map{min-height:320px}
+  .steps::before{left:39px}
+  .info .cta .btn{flex:1 1 100%}
+  .map{height:330px;margin-top:14px}
+  .step{padding:18px 16px;gap:14px}
+  .step h4{font-size:1.3rem}
+  .step p{font-size:.88rem}
+  .lb-wa{bottom:96px}
   footer{padding:56px 0 calc(120px + var(--safe-b))}
   .big{margin-bottom:24px}
   .foot{flex-direction:column;align-items:flex-start}
@@ -358,6 +377,8 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   .lb-prev,.lb-next{top:auto;bottom:24px;margin:0}
   .lb-prev{left:18px}.lb-next{right:18px}
   .lb-dots{bottom:44px}
+  .lb-wa{bottom:auto;top:22px;left:18px;transform:none;padding:10px 16px;font-size:.85rem}
+  .lb-count{left:auto;right:84px;transform:none}
 
   /* app-style bottom bar */
   .tabbar{display:flex;position:fixed;z-index:45;left:12px;right:12px;bottom:calc(12px + var(--safe-b));height:66px;border-radius:22px;background:rgba(20,16,13,.94);border:1px solid rgba(233,201,139,.16);box-shadow:0 18px 40px -14px rgba(0,0,0,.7);align-items:center;justify-content:space-around;padding:0 6px;transform:translateY(140%);transition:transform .6s var(--ease-out)}
@@ -401,7 +422,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
       <nav class="links">
         <a href="#tentang" data-t="navAbout"></a>
         <a href="#koleksi" data-t="navGallery"></a>
-        <a href="#lokasi" data-t="navVisit"></a>
+        <a href="#pesan" data-t="navVisit"></a>
         <a class="wa-mini js-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
       <div class="lang" id="lang" role="group" aria-label="Bahasa / Language">
@@ -433,10 +454,10 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
     <p class="lead fade-up" style="--dl:.75s" data-t="heroLead"></p>
     <div class="cta fade-up" style="--dl:.9s">
       <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="ctaChat"></span></a>
-      <a class="btn btn-ghost" href="#lokasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span data-t="ctaMap"></span></a>
+      <a class="btn btn-ghost" href="#pesan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-list"/></svg><span data-t="ctaMap"></span></a>
     </div>
     <div class="chips fade-up" style="--dl:1.05s">
-      <span class="chip"><i class="dot js-dot"></i><span class="js-status-short"></span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="chipOrder"></span></span>
       <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span class="js-area"></span></span>
     </div>
   </div>
@@ -477,7 +498,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   </div>
 </section>
 
-<section class="visit" id="lokasi">
+<section class="visit" id="pesan">
   <div class="wrap">
     <div class="head">
       <span class="eyebrow" data-r data-t="visitEyebrow"></span>
@@ -487,29 +508,27 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
     <div class="visit-grid">
       <div class="info" data-r="left">
         <div class="info-top">
-          <h3>Moonlight Art Shop</h3>
-          <span class="status js-status"><i class="dot js-dot"></i><span class="js-status-text"></span></span>
-        </div>
-        <div class="row">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg></div>
-          <div><small data-t="lblAddress"></small><b class="js-address"></b></div>
+          <h3>Moonlight</h3>
+          <span class="status open"><i class="dot open"></i><span data-t="chipOrder"></span></span>
         </div>
         <div class="row">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-phone"/></svg></div>
-          <div><small data-t="lblPhone"></small><a class="js-tel" href="#"></a></div>
+          <div><small data-t="lblPhone"></small><a class="js-wa js-phone" href="#" target="_blank" rel="noopener"></a></div>
         </div>
         <div class="row">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg></div>
-          <div style="flex:1"><small data-t="lblHours"></small><ul class="hours js-hours"></ul></div>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-studio"/></svg></div>
+          <div><small data-t="lblStudio"></small><b class="js-studio"></b><span class="addr js-address"></span></div>
         </div>
         <div class="cta">
-          <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
-          <a class="btn btn-ghost js-maps" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-nav"/></svg><span data-t="ctaDirections"></span></a>
+          <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="ctaOrder"></span></a>
+          <a class="btn btn-ghost js-maps" href="#" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span data-t="ctaDirections"></span></a>
         </div>
       </div>
-      <div class="map" data-r="right" id="map">
-        <div class="ph"><div class="pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div></div>
-      </div>
+      <ol class="steps" id="steps" data-r="right"></ol>
+    </div>
+    <div class="map" id="map" data-r>
+      <div class="ph"><div class="pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div></div>
+      <a class="map-chip js-maps-chip" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-nav"/></svg><span data-t="ctaDirections"></span></a>
     </div>
   </div>
 </section>
@@ -520,7 +539,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
     <div class="big" aria-hidden="true">Moonlight</div>
     <div class="foot">
       <span class="brand"><img src="images/logo-mark.png" alt="" width="32" height="32"><span>Moonlight</span></span>
-      <span>© <span id="yr"></span> Moonlight Art Shop · <span class="js-area"></span></span>
+      <span>© <span id="yr"></span> Moonlight · Studio <span class="js-area"></span></span>
     </div>
   </div>
 </footer>
@@ -532,7 +551,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   <a href="#koleksi" data-sec="koleksi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span data-t="tabGallery"></span></a>
   <a class="t-wa js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
   <a href="#tentang" data-sec="tentang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span data-t="tabAbout"></span></a>
-  <a href="#lokasi" data-sec="lokasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pin"/></svg><span data-t="tabVisit"></span></a>
+  <a href="#pesan" data-sec="pesan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-list"/></svg><span data-t="tabVisit"></span></a>
 </nav>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto produk">
@@ -542,6 +561,7 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   <div class="lb-stage" id="lbStage"></div>
   <button class="lb-btn lb-next" aria-label="Berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <div class="lb-dots" id="lbDots"></div>
+  <a class="btn btn-wa lb-wa" id="lbWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="lbAsk"></span></a>
 </div>
 
 <!-- icon sprite -->
@@ -551,33 +571,29 @@ footer{background:var(--n0);color:#8f98ad;padding:70px 0 40px;font-size:.9rem;ov
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
+  <symbol id="i-studio" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M10 4H4v6M14 20h6v-6M4 4l6 6M20 20l-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 <script>
 /* =====================================================================
    DATA TOKO — ganti isian di bawah ini saja.
-   - telepon     : format internasional tanpa + dan spasi (62812xxxxxxx)
-   - linkMaps    : link "Bagikan" dari Google Maps (maps.app.goo.gl/...)
-   - cariDiMaps  : koordinat atau nama toko di Maps, untuk peta di halaman
-                   contoh "-8.5069,115.2625" atau "Moonlight Art Shop Ubud"
-   - zonaWaktu   : zona waktu toko (WITA = Asia/Makassar, WIB = Asia/Jakarta)
-   - jam         : hari 0=Minggu, 1=Senin ... 6=Sabtu, jam "HH:MM"
+   - telepon     : nomor WhatsApp format internasional tanpa + dan spasi
+   - area        : lokasi studio yang tampil di halaman
+   - alamat      : alamat studio
+   - linkMaps    : link Google Maps studio (tombol "Lihat lokasi studio")
+   - cariDiMaps  : nama + alamat seperti di Google Maps, untuk peta di halaman
    - galeri      : foto contoh produk di folder images/. Tambah/kurangi baris
                    untuk menambah/mengurangi foto.
    ===================================================================== */
 const TOKO = {
-  telepon: "6281234567890",                   // TODO: nomor asli
-  teleponTampil: "+62 812-3456-7890",         // TODO: nomor asli
-  alamat: "Jl. Contoh No. 1, Kota, Provinsi", // TODO: alamat lengkap
-  area: "Kota, Provinsi",                     // TODO: kota singkat
-  linkMaps: "",                               // TODO: link share Google Maps
-  cariDiMaps: "Moonlight Art Shop",           // TODO: koordinat / nama di Maps
-  zonaWaktu: "Asia/Makassar",
-  jam: [
-    { hari:[1,2,3,4,5,6], buka:"09:00", tutup:"21:00", id:"Senin – Sabtu", en:"Mon – Sat" },
-    { hari:[0],           buka:"10:00", tutup:"20:00", id:"Minggu",        en:"Sunday" }
-  ],
+  telepon: "6285924818028",
+  teleponTampil: "+62 859-2481-8028",
+  area: "Bali",
+  alamat: "Jl. Pratu Made Rambug No.57, Batubulan, Sukawati, Gianyar, Bali 80237",
+  linkMaps: "https://maps.app.goo.gl/GZft25eFLbXtBnnG9",
+  cariDiMaps: "Moonlight Art shop, Jl. Pratu Made Rambug No.57, Batubulan, Sukawati, Gianyar Regency, Bali 80237",
   galeri: [
     { foto: "images/produk-1.jpg" },
     { foto: "images/produk-2.jpg" },
@@ -591,23 +607,29 @@ const TOKO = {
 /* ---------- teks halaman ---------- */
 const T = {
   id: {
-    navAbout:"Tentang", navGallery:"Koleksi", navVisit:"Lokasi",
-    tabHome:"Beranda", tabGallery:"Koleksi", tabAbout:"Tentang", tabVisit:"Lokasi",
+    navAbout:"Tentang", navGallery:"Koleksi", navVisit:"Cara Pesan",
+    tabHome:"Beranda", tabGallery:"Koleksi", tabAbout:"Tentang", tabVisit:"Pesan",
     heroEyebrow:"Keramik · Gerabah · Dekorasi",
     heroTitle:"Karya *tanah liat* untuk setiap sudut rumah",
-    heroLead:"Vas keramik, guci gerabah, dan dekorasi interior buatan tangan, dari vas mungil untuk rak sampai guci besar untuk sudut ruangan. Mampir ke toko atau tanya dulu lewat WhatsApp.",
-    ctaChat:"Chat WhatsApp", ctaMap:"Lihat lokasi", ctaDirections:"Petunjuk arah",
+    heroLead:"Vas keramik, guci gerabah, dan dekorasi interior buatan tangan, dari vas mungil untuk rak sampai guci besar untuk sudut ruangan. Pesan langsung lewat WhatsApp.",
+    ctaChat:"Pesan via WhatsApp", ctaMap:"Cara pesan", ctaDirections:"Lihat lokasi studio", ctaOrder:"Chat sekarang", chipOrder:"Terima pesanan", lbAsk:"Pesan yang seperti ini",
     badgeT:"Buatan tangan", badgeS:"Keramik & gerabah",
     marquee:["Vas Keramik","Gerabah","Guci Besar","Vas Dekoratif","Mangkuk","Dekorasi Interior"],
     aboutEyebrow:"Tentang kami", aboutTitle:"Apa saja yang <em>kami jual</em>",
     aboutText:"Moonlight Art Shop menjual keramik dan gerabah buatan tangan dengan warna-warna alami: vas, guci, mangkuk, dan dekorasi interior. Cocok untuk rumah, kafe, hotel, atau villa.",
     prodEyebrow:"Contoh produk", prodTitle:"Sebagian <em>koleksi</em> kami",
-    prodText:"Beberapa contoh karya yang bisa Anda temukan di toko kami.",
-    visitEyebrow:"Kunjungi kami", visitTitle:"Datang & lihat <em>langsung</em>",
-    visitText:"Tekstur tanah liat paling terasa kalau dilihat dari dekat. Kami tunggu kedatangan Anda.",
-    lblAddress:"Alamat", lblPhone:"Telepon / WhatsApp", lblHours:"Jam buka",
-    open:"Buka sekarang", closed:"Sedang tutup", openUntil:t=>`Buka · tutup ${t}`, closedShort:"Sedang tutup",
-    waMsg:"Halo Moonlight Art Shop, saya mau tanya-tanya.",
+    prodText:"Beberapa contoh karya dari studio kami. Ketuk foto untuk memperbesar.",
+    visitEyebrow:"Cara pesan", visitTitle:"Pesan <em>lewat WhatsApp</em>",
+    visitText:"Kami tidak punya toko fisik. Semua produk ada di studio kami di Batubulan, Bali, dan dipesan langsung lewat WhatsApp.",
+    lblPhone:"WhatsApp", lblStudio:"Studio",
+    studio:a=>`Studio di ${a}`,
+    steps:[
+      ["Chat kami","Klik tombol WhatsApp, lalu sapa kami."],
+      ["Pilih produk","Kirim foto dari galeri ini atau ceritakan bentuk, warna, dan ukuran yang dicari."],
+      ["Konfirmasi pesanan","Harga, ketersediaan, dan pengiriman dibahas langsung lewat chat."]
+    ],
+    lbMsg:n=>`Halo Moonlight, saya tertarik dengan produk seperti foto nomor ${n} di web. Boleh info lebih lanjut?`,
+    waMsg:"Halo Moonlight, saya mau pesan / tanya produk.",
     enlarge:"Perbesar foto",
     cats:[
       ["vase","Vas Keramik","Vas berbagai bentuk dan ukuran, dari yang mungil untuk meja sampai yang tinggi untuk lantai."],
@@ -617,23 +639,29 @@ const T = {
     ]
   },
   en: {
-    navAbout:"About", navGallery:"Collection", navVisit:"Visit",
-    tabHome:"Home", tabGallery:"Gallery", tabAbout:"About", tabVisit:"Visit",
+    navAbout:"About", navGallery:"Collection", navVisit:"How to Order",
+    tabHome:"Home", tabGallery:"Gallery", tabAbout:"About", tabVisit:"Order",
     heroEyebrow:"Ceramics · Pottery · Décor",
     heroTitle:"Handmade *clay pieces* for every corner",
-    heroLead:"Ceramic vases, earthenware jars and handmade interior décor, from small shelf vases to large floor jars. Visit the shop or message us on WhatsApp first.",
-    ctaChat:"Chat on WhatsApp", ctaMap:"See location", ctaDirections:"Get directions",
+    heroLead:"Ceramic vases, earthenware jars and handmade interior décor, from small shelf vases to large floor jars. Order directly on WhatsApp.",
+    ctaChat:"Order on WhatsApp", ctaMap:"How to order", ctaDirections:"See studio location", ctaOrder:"Chat now", chipOrder:"Taking orders", lbAsk:"Order one like this",
     badgeT:"Handmade", badgeS:"Ceramics & pottery",
     marquee:["Ceramic Vases","Earthenware","Large Jars","Sculptural Vases","Bowls","Interior Décor"],
     aboutEyebrow:"About us", aboutTitle:"What <em>we sell</em>",
     aboutText:"Moonlight Art Shop sells handmade ceramics and pottery in natural tones: vases, jars, bowls and interior décor. Perfect for homes, cafés, hotels and villas.",
     prodEyebrow:"Featured", prodTitle:"A few of our <em>pieces</em>",
-    prodText:"A few examples of what you'll find in our shop.",
-    visitEyebrow:"Visit us", visitTitle:"Come see it <em>in person</em>",
-    visitText:"Clay textures are best seen up close. We'd love to see you.",
-    lblAddress:"Address", lblPhone:"Phone / WhatsApp", lblHours:"Opening hours",
-    open:"Open now", closed:"Closed now", openUntil:t=>`Open · closes ${t}`, closedShort:"Closed now",
-    waMsg:"Hi Moonlight Art Shop, I have a question.",
+    prodText:"A few examples from our studio. Tap a photo to enlarge.",
+    visitEyebrow:"How to order", visitTitle:"Order <em>on WhatsApp</em>",
+    visitText:"We don't have a retail shop. Everything is at our studio in Batubulan, Bali, and ordered directly on WhatsApp.",
+    lblPhone:"WhatsApp", lblStudio:"Studio",
+    studio:a=>`Studio in ${a}`,
+    steps:[
+      ["Message us","Tap the WhatsApp button and say hi."],
+      ["Choose a piece","Send a photo from this gallery or describe the shape, colour and size you want."],
+      ["Confirm your order","Price, availability and delivery are discussed directly in the chat."]
+    ],
+    lbMsg:n=>`Hi Moonlight, I'm interested in a piece like photo number ${n} on your website. Could you tell me more?`,
+    waMsg:"Hi Moonlight, I'd like to order / ask about a product.",
     enlarge:"Enlarge photo",
     cats:[
       ["vase","Ceramic Vases","Vases in every shape and size, from tabletop pieces to tall floor vases."],
@@ -662,21 +690,6 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lang = "id";
 try { const s = localStorage.getItem("ml-lang"); if (s && s in {id:1,en:1}) lang = s; } catch(e) {}
 
-/* jam buka */
-function nowInStore(){
-  try {
-    const p = Object.fromEntries(new Intl.DateTimeFormat("en-US",{timeZone:TOKO.zonaWaktu,weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()).map(x=>[x.type,x.value]));
-    return { d:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(p.weekday), m:(+p.hour%24)*60 + +p.minute };
-  } catch(e){ const n=new Date(); return { d:n.getDay(), m:n.getHours()*60+n.getMinutes() }; }
-}
-const toMin = s => { const [h,m] = s.split(/[:.]/).map(Number); return h*60 + (m||0); };
-function storeStatus(){
-  const n = nowInStore();
-  const today = TOKO.jam.find(j => j.hari.includes(n.d));
-  const open = !!today && n.m >= toMin(today.buka) && n.m < toMin(today.tutup);
-  return { open, today, idx: TOKO.jam.indexOf(today) };
-}
-
 /* hero title with word reveal */
 function titleHTML(str){
   let em = false, i = 0;
@@ -702,15 +715,11 @@ function render(){
 
   $$(".js-wa").forEach(a => a.href = wa(t.waMsg));
   $$(".js-area").forEach(el => el.textContent = TOKO.area);
+  $$(".js-phone").forEach(a => a.textContent = TOKO.teleponTampil);
+  $(".js-studio").textContent = t.studio(TOKO.area);
   $(".js-address").textContent = TOKO.alamat;
-  const tel = $(".js-tel"); tel.textContent = TOKO.teleponTampil; tel.href = "tel:+" + TOKO.telepon;
-
-  const st = storeStatus();
-  $(".js-hours").innerHTML = TOKO.jam.map((j,i) => `<li class="${i===st.idx?"today":""}"><span>${esc(j[lang])}</span><b>${fmt(j.buka)} – ${fmt(j.tutup)}</b></li>`).join("");
-  $$(".js-dot").forEach(d => d.classList.toggle("open", st.open));
-  $(".js-status").classList.toggle("open", st.open);
-  $(".js-status-text").textContent = st.open ? t.open : t.closed;
-  $(".js-status-short").textContent = st.open ? t.openUntil(fmt(st.today.tutup)) : t.closedShort;
+  $("#steps").innerHTML = t.steps.map(([h,p],k) => `<li class="step" style="--k:${k}"><span class="n">${k+1}</span><div><h4>${h}</h4><p>${p}</p></div></li>`).join("");
+  if (lb.classList.contains("open")) $("#lbWa").href = wa(t.lbMsg(cur+1));
 
   const words = t.marquee.map(w => `<span>${esc(w)}</span>`).join("");
   $("#track").innerHTML = words + words + words + words;
@@ -794,21 +803,21 @@ if ("IntersectionObserver" in window){
   const sio = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting){ Object.values(tabs).forEach(a => a.classList.remove("on")); tabs[e.target.id]?.classList.add("on"); }
   }), { rootMargin:"-45% 0px -50% 0px" });
-  ["home","tentang","koleksi","lokasi"].forEach(id => sio.observe(document.getElementById(id)));
+  ["home","tentang","koleksi","pesan"].forEach(id => sio.observe(document.getElementById(id)));
 
-  // lazy map
+}
+if (TOKO.linkMaps){ const m = $(".js-maps"); m.href = TOKO.linkMaps; m.hidden = false; $(".js-maps-chip").href = TOKO.linkMaps; }
+if (TOKO.cariDiMaps && "IntersectionObserver" in window){
   const mio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return; mio.disconnect();
     const f = document.createElement("iframe");
-    f.title = "Peta lokasi Moonlight Art Shop"; f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
-    f.src = `https://www.google.com/maps?q=${encodeURIComponent(TOKO.cariDiMaps)}&output=embed`;
-    f.style.opacity = 0; f.style.transition = "opacity .8s";
-    f.onload = () => { f.style.opacity = 1; };
-    $("#map").appendChild(f);
+    f.title = "Peta lokasi studio Moonlight"; f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+    f.src = `https://www.google.com/maps?q=${encodeURIComponent(TOKO.cariDiMaps)}&z=16&output=embed`;
+    f.style.opacity = 0; f.style.transition = "opacity .8s"; f.onload = () => { f.style.opacity = 1; };
+    $("#map").insertBefore(f, $(".js-maps-chip"));
   }), { rootMargin:"300px" });
   mio.observe($("#map"));
-}
-$(".js-maps").href = TOKO.linkMaps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(TOKO.cariDiMaps)}`;
+} else if (!TOKO.cariDiMaps) { $("#map").hidden = true; }
 
 /* lightbox */
 const lb = $("#lb"), stage = $("#lbStage"), dots = $("#lbDots"), count = $("#lbCount");
@@ -820,6 +829,7 @@ function show(i, dir){
   if (dir){ stage.style.setProperty("--dir", dir > 0 ? "40px" : "-40px"); stage.classList.remove("swap"); void stage.offsetWidth; stage.classList.add("swap"); }
   dots.innerHTML = TOKO.galeri.map((_,k) => `<i class="${k===cur?"on":""}"></i>`).join("");
   count.textContent = `${cur+1} / ${n}`;
+  $("#lbWa").href = wa(T[lang].lbMsg(cur+1));
 }
 function openLb(i){ show(i); lb.classList.add("open"); document.body.classList.add("locked"); }
 function closeLb(){ lb.classList.remove("open"); document.body.classList.remove("locked"); }
@@ -854,11 +864,6 @@ $$("#lang button").forEach(b => b.addEventListener("click", () => {
 /* boot */
 $("#yr").textContent = new Date().getFullYear();
 render(); onScroll();
-setInterval(() => { const st = storeStatus(), t = T[lang];
-  $$(".js-dot").forEach(d => d.classList.toggle("open", st.open)); $(".js-status").classList.toggle("open", st.open);
-  $(".js-status-text").textContent = st.open ? t.open : t.closed;
-  $(".js-status-short").textContent = st.open ? t.openUntil(fmt(st.today.tutup)) : t.closedShort; }, 60000);
-
 let booted = false;
 function boot(){
   if (booted) return; booted = true;
