@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moonlight Art Shop</title>
+<meta name="description" content="Moonlight Art Shop: lukisan, ukiran kayu, patung, dan kerajinan tangan. Lihat alamat, peta, dan nomor WhatsApp kami.">
+<meta property="og:title" content="Moonlight Art Shop">
+<meta property="og:description" content="Lukisan, ukiran, patung & kerajinan tangan. Klik untuk lihat alamat, peta, dan kontak.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yblig.github.io/moonlight-art-shop/images/og-cover.png">
+<meta property="og:url" content="https://yblig.github.io/moonlight-art-shop/">
+<meta name="theme-color" content="#0f1626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1626'/%3E%3Cpath d='M40 14a20 20 0 1 0 12 32A16 16 0 1 1 40 14z' fill='%23e9c98b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0f1626; --night-2:#172238; --night-3:#22304d;
+  --moon:#e9c98b; --moon-soft:#f4e4c1; --cream:#faf6ee; --paper:#fffdf8;
+  --ink:#1d2333; --muted:#5d6577; --line:#e7dfd0;
+  --wa:#1fa855;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1100px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#9a7b3f}
+
+/* ---------- top bar ---------- */
+.top{position:absolute;inset:0 0 auto;z-index:5}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--moon-soft);text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600}
+.brand svg{width:30px;height:30px}
+.lang{display:flex;border:1px solid rgba(233,201,139,.4);border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--moon-soft);font:inherit;font-size:.78rem;font-weight:700;padding:6px 12px;cursor:pointer;letter-spacing:.06em}
+.lang button.on{background:var(--moon);color:var(--night)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:var(--cream);background:
+  radial-gradient(1200px 500px at 80% -10%,#2b3c63 0%,transparent 60%),
+  linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%);
+  padding:120px 0 90px}
+.stars{position:absolute;inset:0;pointer-events:none}
+.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.55;animation:tw 4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.12}}
+.moon{position:absolute;right:max(4vw,20px);top:90px;width:clamp(140px,26vw,300px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 38% 36%,#fff8e6 0%,var(--moon-soft) 38%,var(--moon) 75%,#c9a35f 100%);
+  box-shadow:0 0 80px 20px rgba(233,201,139,.22),0 0 220px 60px rgba(233,201,139,.10)}
+.moon::before,.moon::after{content:"";position:absolute;border-radius:50%;background:rgba(170,130,70,.18)}
+.moon::before{width:18%;height:18%;left:56%;top:28%}
+.moon::after{width:11%;height:11%;left:30%;top:60%}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(2.7rem,8vw,5.4rem);max-width:11ch;margin:14px 0 18px}
+.hero h1 em{font-style:italic;color:var(--moon)}
+.hero .eyebrow{color:var(--moon)}
+.hero p.lead{max-width:46ch;font-size:clamp(1rem,2.4vw,1.15rem);color:#d5d9e4}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:99px;font-weight:700;text-decoration:none;font-size:.98rem;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 24px -8px rgba(31,168,85,.6)}
+.btn-ghost{border:1.5px solid rgba(233,201,139,.55);color:var(--moon-soft)}
+.btn-dark{background:var(--night);color:var(--cream)}
+.btn-light{background:var(--paper);color:var(--ink);border:1.5px solid var(--line)}
+.quick{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:38px;font-size:.92rem;color:#b9bfcd}
+.quick span{display:flex;align-items:center;gap:8px}
+.quick svg{width:16px;height:16px;color:var(--moon)}
+
+/* ---------- sections ---------- */
+section{padding:84px 0}
+.head{max-width:620px;margin-bottom:40px}
+.head h2{font-size:clamp(2.1rem,5vw,3.1rem);margin:10px 0 12px}
+.head p{color:var(--muted)}
+
+/* about / categories */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.cat{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.cat .ic{width:46px;height:46px;border-radius:12px;background:var(--night);display:grid;place-items:center;margin-bottom:16px}
+.cat .ic svg{width:24px;height:24px;color:var(--moon)}
+.cat h3{font-size:1.45rem;margin-bottom:6px}
+.cat p{color:var(--muted);font-size:.95rem}
+
+/* products */
+.products{background:var(--paper);border-block:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.card{border-radius:var(--radius);overflow:hidden;background:var(--cream);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,22,38,.4)}
+.card .ph{aspect-ratio:4/3;background:var(--night-3);position:relative;overflow:hidden}
+.card .ph img,.card .ph svg{width:100%;height:100%;object-fit:cover}
+.card .tag{position:absolute;left:12px;top:12px;background:rgba(15,22,38,.78);color:var(--moon-soft);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px;backdrop-filter:blur(4px)}
+.card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:1.4rem}
+.card p{color:var(--muted);font-size:.92rem;flex:1}
+.card .ask{margin-top:10px;font-weight:700;font-size:.9rem;color:var(--wa);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.card .ask svg{width:16px;height:16px}
+
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:stretch}
+.info{background:var(--night);color:var(--cream);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:22px}
+.info h3{font-size:1.9rem;color:var(--moon-soft)}
+.row{display:flex;gap:14px}
+.row .ic{width:40px;height:40px;flex:none;border-radius:10px;background:var(--night-3);display:grid;place-items:center}
+.row .ic svg{width:20px;height:20px;color:var(--moon)}
+.row small{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#98a0b3;font-weight:700}
+.row b,.row a{font-weight:500;color:var(--cream);text-decoration:none}
+.row a:hover{text-decoration:underline}
+.hours{list-style:none;font-size:.95rem}
+.hours li{display:flex;justify-content:space-between;gap:12px}
+.info .cta{margin-top:auto}
+.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--night-3)}
+.map iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+
+/* footer */
+footer{background:var(--night);color:#98a0b3;padding:36px 0 110px;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+footer .brand{font-size:1.2rem}
+
+/* floating WA */
+.fab{position:fixed;right:18px;bottom:18px;z-index:20;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(31,168,85,.7);transition:transform .15s}
+.fab:hover{transform:scale(1.06)}
+.fab svg{width:30px;height:30px;color:#fff}
+
+@media (max-width:820px){
+  .visit-grid{grid-template-columns:1fr}
+  .hero{padding:104px 0 70px}
+  .moon{top:70px;right:-30px;opacity:.9}
+  section{padding:64px 0}
+}
+@media (max-width:520px){
+  .cta .btn{flex:1;justify-content:center}
+  .grid{grid-template-columns:1fr 1fr;gap:12px}
+  .card .body{padding:12px 12px 14px}
+  .card h3{font-size:1.15rem}
+  .card p{font-size:.84rem}
+  .card .tag{font-size:.62rem;padding:4px 8px;left:8px;top:8px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!--
+  =====================================================================
+  DATA TOKO — CUKUP UBAH BAGIAN "TOKO" DI BAGIAN <script> PALING BAWAH.
+  Nomor, alamat, jam buka, link maps, dan daftar produk semuanya di sana.
+  =====================================================================
+-->
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 10a22 22 0 1 0 14 36A17 17 0 1 1 40 10z" fill="#e9c98b"/></svg>
+      Moonlight Art Shop
+    </a>
+    <div class="lang" role="group" aria-label="Bahasa">
+      <button data-lang="id" class="on">ID</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding-top:120px">
+  <div class="stars" id="stars"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-t="heroEyebrow"></span>
+    <h1 data-t="heroTitle"></h1>
+    <p class="lead" data-t="heroLead"></p>
+    <div class="cta">
+      <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span data-t="ctaChat"></span></a>
+      <a class="btn btn-ghost" href="#lokasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><span data-t="ctaMap"></span></a>
+    </div>
+    <div class="quick">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg><b class="js-area"></b></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg><b class="js-hours-short"></b></span>
+    </div>
+  </div>
+</section>
+
+<section id="tentang">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-t="aboutEyebrow"></span>
+      <h2 data-t="aboutTitle"></h2>
+      <p data-t="aboutText"></p>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<section class="products" id="produk">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-t="prodEyebrow"></span>
+      <h2 data-t="prodTitle"></h2>
+      <p data-t="prodText"></p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="lokasi">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-t="visitEyebrow"></span>
+      <h2 data-t="visitTitle"></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="info">
+        <h3>Moonlight Art Shop</h3>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-pin"/></svg></div>
+          <div><small data-t="lblAddress"></small><b class="js-address"></b></div>
+        </div>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-phone"/></svg></div>
+          <div><small data-t="lblPhone"></small><a class="js-tel" href="#"></a></div>
+        </div>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg></div>
+          <div style="flex:1"><small data-t="lblHours"></small><ul class="hours js-hours"></ul></div>
+        </div>
+        <div class="cta">
+          <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+          <a class="btn btn-ghost js-maps" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-nav"/></svg><span data-t="ctaDirections"></span></a>
+        </div>
+      </div>
+      <div class="map"><iframe class="js-embed" title="Peta lokasi Moonlight Art Shop" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 10a22 22 0 1 0 14 36A17 17 0 1 1 40 10z" fill="#e9c98b"/></svg>Moonlight Art Shop</span>
+    <span>© <span id="yr"></span> Moonlight Art Shop · <span class="js-area"></span></span>
+  </div>
+</footer>
+
+<a class="fab js-wa" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.36A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.08.8.82-3-.2-.31a8.2 8.2 0 1 1 6.94 3.84zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.85 2.03 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.17 3.68c1.55.67 2.16.73 2.93.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.1-.22-.16-.47-.28z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 1 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L12 14.8 9.2 12z"/><path d="M8 13c-2.2 0-4 1.8-4 4 0 1.3-.7 2.3-2 3 4 1 8-.5 8-4.2"/></symbol>
+  <symbol id="i-carve" viewBox="0 0 24 24"><path d="M12 3c3 2 5 5 5 9s-2 7-5 9c-3-2-5-5-5-9s2-7 5-9z"/><path d="M12 7v10M9.5 10h5M9.5 14h5"/></symbol>
+  <symbol id="i-statue" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M8 21h8M9 21l1-6-3-3 2-3h6l2 3-3 3 1 6"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4.5 9 8 12 8zm0 0s2-5 4.5-3.5S15 8 12 8z"/></symbol>
+</svg>
+
+<script>
+/* =====================================================================
+   DATA TOKO — ganti isian di bawah ini saja.
+   - telepon: format internasional tanpa + dan tanpa spasi (62812xxxxxxx)
+   - linkMaps: link "Bagikan" dari Google Maps (maps.app.goo.gl/...)
+   - cariDiMaps: teks pencarian / koordinat untuk peta di halaman,
+                 mis. "-8.5069,115.2625" atau "Moonlight Art Shop Ubud"
+   - foto produk: taruh file di folder images/ lalu isi foto: "images/nama.jpg"
+                  kalau dikosongkan, kartu memakai ilustrasi bawaan.
+   ===================================================================== */
+const TOKO = {
+  telepon: "6281234567890",                 // TODO: nomor asli
+  teleponTampil: "+62 812-3456-7890",       // TODO: nomor asli
+  alamat: "Jl. Contoh No. 1, Kota, Provinsi", // TODO: alamat lengkap
+  area: "Kota, Provinsi",                   // TODO: kota singkat (tampil di atas)
+  linkMaps: "",                             // TODO: link share Google Maps
+  cariDiMaps: "Moonlight Art Shop",         // TODO: koordinat / nama di Maps
+  jam: [
+    { id: "Senin – Sabtu", en: "Mon – Sat", jam: "09.00 – 21.00" },
+    { id: "Minggu",        en: "Sunday",    jam: "10.00 – 20.00" }
+  ],
+  jamSingkat: { id: "Buka setiap hari · 09.00 – 21.00", en: "Open daily · 9 AM – 9 PM" },
+  produk: [
+    { foto: "", art: "paint",  kat: {id:"Lukisan",en:"Painting"},
+      nama: {id:"Lukisan Kanvas",en:"Canvas Paintings"},
+      desk: {id:"Pemandangan, abstrak, dan motif tradisional dalam berbagai ukuran.",en:"Landscapes, abstracts and traditional motifs in many sizes."} },
+    { foto: "", art: "mask",   kat: {id:"Ukiran",en:"Carving"},
+      nama: {id:"Topeng Ukir Kayu",en:"Carved Wooden Masks"},
+      desk: {id:"Topeng ukiran tangan, cocok untuk hiasan dinding.",en:"Hand-carved masks, perfect as wall décor."} },
+    { foto: "", art: "statue", kat: {id:"Patung",en:"Sculpture"},
+      nama: {id:"Patung Kayu & Batu",en:"Wood & Stone Statues"},
+      desk: {id:"Patung dekoratif dari ukuran meja sampai ukuran besar.",en:"Decorative statues, from tabletop to large pieces."} },
+    { foto: "", art: "craft",  kat: {id:"Kerajinan",en:"Handicraft"},
+      nama: {id:"Kerajinan Tangan",en:"Handicrafts"},
+      desk: {id:"Anyaman, gantungan, dan pernak-pernik buatan pengrajin lokal.",en:"Weaving, hangings and trinkets by local artisans."} },
+    { foto: "", art: "frame",  kat: {id:"Dekorasi",en:"Décor"},
+      nama: {id:"Hiasan Dinding",en:"Wall Décor"},
+      desk: {id:"Panel ukir, bingkai, dan dekorasi untuk rumah atau villa.",en:"Carved panels, frames and décor for home or villa."} },
+    { foto: "", art: "gift",   kat: {id:"Oleh-oleh",en:"Souvenir"},
+      nama: {id:"Souvenir & Oleh-oleh",en:"Souvenirs & Gifts"},
+      desk: {id:"Pilihan kecil yang pas dibawa pulang atau untuk hadiah.",en:"Small pieces that are easy to take home or give."} }
+  ]
+};
+
+/* ---------- teks halaman ---------- */
+const T = {
+  id: {
+    heroEyebrow: "Galeri seni & kerajinan",
+    heroTitle: "Karya seni untuk <em>setiap sudut</em> rumah",
+    heroLead: "Moonlight Art Shop menyediakan lukisan, ukiran, patung, dan kerajinan tangan pilihan. Mampir langsung ke toko atau tanya dulu lewat WhatsApp.",
+    ctaChat: "Chat WhatsApp", ctaMap: "Lihat lokasi", ctaDirections: "Petunjuk arah",
+    aboutEyebrow: "Tentang kami", aboutTitle: "Apa saja yang kami jual",
+    aboutText: "Kami mengumpulkan karya seniman dan pengrajin lokal, dari hiasan kecil untuk oleh-oleh sampai karya besar untuk rumah, kantor, atau villa.",
+    prodEyebrow: "Contoh produk", prodTitle: "Sebagian koleksi kami",
+    prodText: "Koleksi di toko selalu berganti. Tanyakan stok, ukuran, atau harga lewat WhatsApp.",
+    askThis: "Tanya produk ini",
+    visitEyebrow: "Kunjungi kami", visitTitle: "Alamat & kontak",
+    lblAddress: "Alamat", lblPhone: "Telepon / WhatsApp", lblHours: "Jam buka",
+    waMsg: "Halo Moonlight Art Shop, saya mau tanya-tanya.",
+    waAsk: p => `Halo Moonlight Art Shop, saya mau tanya soal ${p}.`,
+    cats: [
+      ["i-brush","Lukisan","Lukisan kanvas dengan berbagai gaya: pemandangan, abstrak, hingga motif tradisional."],
+      ["i-carve","Ukiran Kayu","Topeng, panel, dan hiasan ukir yang dikerjakan dengan tangan."],
+      ["i-statue","Patung","Patung kayu dan batu untuk dekorasi dalam maupun luar ruangan."],
+      ["i-gift","Kerajinan & Souvenir","Anyaman, pernak-pernik, dan oleh-oleh khas untuk dibawa pulang."]
+    ]
+  },
+  en: {
+    heroEyebrow: "Art & craft gallery",
+    heroTitle: "Art for <em>every corner</em> of your home",
+    heroLead: "Moonlight Art Shop carries paintings, carvings, statues and handpicked handicrafts. Drop by the shop or message us on WhatsApp first.",
+    ctaChat: "Chat on WhatsApp", ctaMap: "See location", ctaDirections: "Get directions",
+    aboutEyebrow: "About us", aboutTitle: "What we sell",
+    aboutText: "We bring together work by local artists and artisans, from small souvenirs to statement pieces for your home, office or villa.",
+    prodEyebrow: "Featured products", prodTitle: "A few of our pieces",
+    prodText: "Our collection changes often. Ask about stock, sizes or prices on WhatsApp.",
+    askThis: "Ask about this",
+    visitEyebrow: "Visit us", visitTitle: "Address & contact",
+    lblAddress: "Address", lblPhone: "Phone / WhatsApp", lblHours: "Opening hours",
+    waMsg: "Hi Moonlight Art Shop, I have a question.",
+    waAsk: p => `Hi Moonlight Art Shop, I'd like to ask about ${p}.`,
+    cats: [
+      ["i-brush","Paintings","Canvas paintings in many styles: landscapes, abstracts and traditional motifs."],
+      ["i-carve","Wood Carvings","Masks, panels and ornaments, carved by hand."],
+      ["i-statue","Statues","Wood and stone statues for indoor and outdoor décor."],
+      ["i-gift","Crafts & Souvenirs","Weaving, trinkets and local gifts to take home."]
+    ]
+  }
+};
+
+/* ---------- ilustrasi bawaan (dipakai kalau foto belum ada) ---------- */
+const ART = {
+  paint:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#22304d"/><rect x="70" y="40" width="260" height="200" fill="#c9a35f"/><rect x="82" y="52" width="236" height="176" fill="#f4e4c1"/><rect x="82" y="52" width="236" height="110" fill="#e9b97a"/><circle cx="250" cy="105" r="26" fill="#fff4d6"/><path d="M82 170l50-40 40 30 50-50 96 70v48H82z" fill="#5b7a5a"/><path d="M82 195l70-30 60 25 106-20v58H82z" fill="#3e5a46"/><rect x="190" y="240" width="20" height="40" fill="#8a6a3c"/></svg>`,
+  mask:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2b2420"/><ellipse cx="200" cy="150" rx="88" ry="112" fill="#a8743f"/><ellipse cx="200" cy="150" rx="74" ry="98" fill="#c08a4e"/><path d="M140 125q25-22 48 0q-24 14-48 0zM212 125q25-22 48 0q-24 14-48 0z" fill="#2b2420"/><path d="M200 135v40l-12 8h24l-12-8" stroke="#7a5230" stroke-width="5" fill="none"/><path d="M160 205q40 28 80 0q-40 10-80 0z" fill="#7a2f22"/><path d="M130 85q70-50 140 0" stroke="#e9c98b" stroke-width="7" fill="none"/><circle cx="200" cy="62" r="9" fill="#e9c98b"/></svg>`,
+  statue:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2f3a3a"/><rect x="140" y="245" width="120" height="30" rx="4" fill="#5c6766"/><circle cx="200" cy="80" r="30" fill="#9aa39f"/><path d="M200 112c-38 0-56 30-56 70 0 22 14 40 30 52h52c16-12 30-30 30-52 0-40-18-70-56-70z" fill="#8c9692"/><path d="M168 175q32 26 64 0" stroke="#6f7a76" stroke-width="6" fill="none"/><path d="M180 140q20 12 40 0" stroke="#6f7a76" stroke-width="5" fill="none"/><path d="M178 52q22-30 44 0" stroke="#e9c98b" stroke-width="6" fill="none"/></svg>`,
+  craft:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#3a2e22"/><g fill="none" stroke-width="10"><path d="M110 120h180l-20 130H130z" fill="#c69a5a" stroke="none"/><path d="M118 150h164M122 180h156M126 210h148M130 240h140" stroke="#9c7440"/><path d="M150 120v130M190 120v130M230 120v130M270 120v130" stroke="#e1bf80" stroke-width="8"/></g><path d="M140 120q60-80 120 0" stroke="#8a6332" stroke-width="10" fill="none"/></svg>`,
+  frame:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#1d2333"/><rect x="95" y="35" width="210" height="230" rx="6" fill="#8a5a2b"/><rect x="113" y="53" width="174" height="194" fill="#b07a40"/><g fill="none" stroke="#e9c98b" stroke-width="5"><circle cx="200" cy="150" r="56"/><path d="M200 94v112M144 150h112M160 110l80 80M240 110l-80 80"/><circle cx="200" cy="150" r="20"/></g></svg>`,
+  gift:`<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#2a2440"/><circle cx="135" cy="185" r="48" fill="#c25b4a"/><path d="M135 137v96M87 185h96" stroke="#e9c98b" stroke-width="5"/><rect x="200" y="120" width="110" height="110" rx="10" fill="#4f7a6e"/><path d="M255 120v110M200 175h110" stroke="#f4e4c1" stroke-width="8"/><path d="M255 120q-22-30-34-10t34 10q22-30 34-10t-34 10" fill="#f4e4c1"/><rect x="60" y="232" width="280" height="10" rx="5" fill="#3d3560"/></svg>`
+};
+
+/* ---------- render ---------- */
+let lang = "id";
+try {
+  const saved = localStorage.getItem("ml-lang");
+  if (saved) lang = saved;
+} catch(e) {}
+if (!T[lang]) lang = "id";
+
+const wa = msg => `https://wa.me/${TOKO.telepon}?text=${encodeURIComponent(msg)}`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = t[el.dataset.t]; });
+  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+
+  document.querySelectorAll(".js-wa").forEach(a => a.href = wa(t.waMsg));
+  document.querySelectorAll(".js-area").forEach(el => el.textContent = TOKO.area);
+  document.querySelector(".js-hours-short").textContent = TOKO.jamSingkat[lang];
+  document.querySelector(".js-address").textContent = TOKO.alamat;
+  const tel = document.querySelector(".js-tel");
+  tel.textContent = TOKO.teleponTampil; tel.href = "tel:+" + TOKO.telepon;
+  document.querySelector(".js-hours").innerHTML = TOKO.jam.map(j => `<li><span>${esc(j[lang])}</span><b>${esc(j.jam)}</b></li>`).join("");
+
+  document.getElementById("cats").innerHTML = t.cats.map(([ic,h,p]) =>
+    `<div class="cat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#${ic}"/></svg></div><h3>${h}</h3><p>${p}</p></div>`).join("");
+
+  document.getElementById("grid").innerHTML = TOKO.produk.map(p => {
+    const media = p.foto ? `<img src="${esc(p.foto)}" alt="${esc(p.nama[lang])}" loading="lazy">` : (ART[p.art] || ART.paint);
+    return `<article class="card"><div class="ph">${media}<span class="tag">${esc(p.kat[lang])}</span></div>
+      <div class="body"><h3>${esc(p.nama[lang])}</h3><p>${esc(p.desk[lang])}</p>
+      <a class="ask" href="${wa(t.waAsk(p.nama[lang]))}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>${t.askThis}</a></div></article>`;
+  }).join("");
+}
+
+// peta
+const q = encodeURIComponent(TOKO.cariDiMaps);
+document.querySelector(".js-embed").src = `https://www.google.com/maps?q=${q}&output=embed`;
+document.querySelector(".js-maps").href = TOKO.linkMaps || `https://www.google.com/maps/search/?api=1&query=${q}`;
+
+// bintang
+const stars = document.getElementById("stars");
+for (let i = 0; i < 70; i++) {
+  const s = document.createElement("i");
+  s.style.left = Math.random()*100 + "%"; s.style.top = Math.random()*100 + "%";
+  s.style.animationDelay = (Math.random()*4).toFixed(2) + "s";
+  if (Math.random() > .85) { s.style.width = s.style.height = "3px"; }
+  stars.appendChild(s);
+}
+
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; try { localStorage.setItem("ml-lang", lang); } catch(e) {} render();
+}));
+document.getElementById("yr").textContent = new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
