@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moonlight-art-shop.vercel.app/sitemap.xml
